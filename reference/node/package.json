@@ -1,7 +1,7 @@
 {
   "name": "@agent-arc-status/reference",
   "version": "0.2.0",
-  "description": "Reference implementation of the Agent Arc Status Protocol — types, parser, validator, renderer. Zero runtime dependencies.",
+  "description": "Reference implementation of the Agent Arc Status Protocol: types, parser, validator, renderer. Zero runtime dependencies.",
   "license": "MIT",
   "author": "Joe Fisher",
   "repository": {

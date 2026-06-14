@@ -1,5 +1,5 @@
 /**
- * Agent Arc Status Protocol — reference implementation (v0.2).
+ * Agent Arc Status Protocol: reference implementation (v0.2).
  *
  * Spec: https://github.com/joethefisher/agent-arc-status
  *
@@ -12,7 +12,7 @@
  *
  * It is intentionally tiny and has zero runtime dependencies. If you need
  * canonical-schema validation against `spec/schema.json`, use any standard
- * JSON Schema validator (ajv, etc.) — the schema is the source of truth and
+ * JSON Schema validator (ajv, etc.). The schema is the source of truth and
  * this validator mirrors it.
  */
 

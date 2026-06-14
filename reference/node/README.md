@@ -1,4 +1,4 @@
-# `@agent-arc-status/reference` — Node reference implementation
+# `@agent-arc-status/reference`: Node reference implementation
 
 Reference TypeScript implementation of the [Agent Arc Status Protocol](../../README.md) v0.2.
 
@@ -9,7 +9,7 @@ Provides:
 - A sequence validator for per-arc phase ordering (`validateSequence`)
 - JSON / JSON Lines parsers that never throw (`parse`, `parseJsonl`)
 - A default human-line renderer (`render`)
-- Cadence helpers — `CadenceController` and `SilenceWatchdog` — that drive the
+- Cadence helpers (`CadenceController` and `SilenceWatchdog`) that drive the
   silence backstop and cadence-floor gating
 - `reduceArc`, which folds an event stream into current arc state
 
@@ -22,9 +22,9 @@ npm install @agent-arc-status/reference
 ```
 
 > Not yet published to npm. Until then, install straight from the subdirectory
-> on GitHub — the `prepare` script builds `dist/` on install:
+> on GitHub; the `prepare` script builds `dist/` on install:
 > `npm install github:joethefisher/agent-arc-status#main:reference/node`
-> or copy `src/` into your project — the surface is small.
+> or copy `src/` into your project. The surface is small.
 
 ## Use
 
@@ -103,13 +103,13 @@ Tests include end-to-end runs against the shipped [`examples/`](../../examples/)
 
 This package implements **structural conformance plus cadence discipline**. It does not implement:
 
-- Transport (HTTP/queue/etc.) — the Protocol is transport-agnostic; bring your own.
-- Persistence — emitters and consumers store events as fits their architecture.
+- Transport (HTTP/queue/etc.): the Protocol is transport-agnostic; bring your own.
+- Persistence: emitters and consumers store events as fits their architecture.
 
 The silence backstop and cadence-floor gating ship as `CadenceController` and
 `SilenceWatchdog` (see [`src/cadence.ts`](src/cadence.ts)); drive them from a
 timer independent of your work loop, since an emitter that heartbeats from its
-own work loop cannot signal liveness in the one case that matters — when that
+own work loop cannot signal liveness in the one case that matters: when that
 loop has stalled.
 
 For the canonical schema, see [`spec/schema.json`](../../spec/schema.json). For the full specification, see [`spec/v0.2.md`](../../spec/v0.2.md).

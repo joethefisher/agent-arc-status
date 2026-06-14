@@ -1,5 +1,5 @@
 /**
- * Fold an ordered event stream into the current state of an arc — the cheap
+ * Fold an ordered event stream into the current state of an arc: the cheap
  * "what is true now?" reduction that design-rationale.md promises the reference
  * implementation provides. Append-only events compose with any transport; this
  * reconstructs current state for consumers that want a snapshot rather than a

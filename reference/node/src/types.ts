@@ -1,5 +1,5 @@
 /**
- * Agent Arc Status Protocol v0.2 — TypeScript types.
+ * Agent Arc Status Protocol v0.2: TypeScript types.
  *
  * These mirror the JSON Schema in `spec/schema.json`. They are the
  * authoritative type-level representation of a conformant event.

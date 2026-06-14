@@ -31,7 +31,7 @@ An arc could be modeled as a single mutable record that updates as work progress
 - Events are idempotent under retry. A mutable record makes retry semantics hard ("did the update apply? am I about to overwrite a later state?").
 - Append-only matches how humans think about progress. "What happened?" is a more useful question than "what is the current state?"
 
-The cost is that consumers must reconstruct current state from the event stream. This is cheap (it's a fold over the events), and the reference implementation provides a helper — `reduceArc` — that folds an event stream into current arc state.
+The cost is that consumers must reconstruct current state from the event stream. This is cheap (it's a fold over the events), and the reference implementation provides a helper (`reduceArc`) that folds an event stream into current arc state.
 
 ## Why `sent_at` instead of `started_at` and `duration`
 
@@ -43,13 +43,13 @@ We could have made events carry the arc-start time and a duration. Three reasons
 
 ## Why phase ordering is enforced
 
-A naive read of the spec might suggest phases are advisory — emitters can fire whatever they want and consumers cope. We made phase ordering a conformance requirement because:
+A naive read of the spec might suggest phases are advisory, that emitters can fire whatever they want and consumers cope. We made phase ordering a conformance requirement because:
 
 - Without enforcement, consumers must implement defensive logic for every illegal sequence. The cost of "be liberal in what you accept" is borne by every consumer; the cost of strict emission is borne once by the emitter author.
-- Phase ordering carries semantic weight. A `done` followed by `milestone` is not a stylistic choice — it's nonsense. Allowing it would mean every consumer has to decide what nonsense means.
+- Phase ordering carries semantic weight. A `done` followed by `milestone` is not a stylistic choice; it's nonsense. Allowing it would mean every consumer has to decide what nonsense means.
 - The conformance suite (future) needs a clear "is this legal?" answer.
 
-Phase-ordering and terminal rules are structurally enforced: `validateSequence` catches an arc that doesn't begin with `started`, doesn't end in a terminal event, or re-blocks without a resume. The cadence backstop and honest-`done`, by contrast, are *operational* rules a stateless validator cannot prove — the spec separates the two in §6's two-tier conformance, and we don't claim the validator enforces what it structurally can't. The cost to emitters is minimal: write the phases in the order the spec lists.
+Phase-ordering and terminal rules are structurally enforced: `validateSequence` catches an arc that doesn't begin with `started`, doesn't end in a terminal event, or re-blocks without a resume. The cadence backstop and honest-`done`, by contrast, are *operational* rules a stateless validator cannot prove. The spec separates the two in §6's two-tier conformance, and we don't claim the validator enforces what it structurally can't. The cost to emitters is minimal: write the phases in the order the spec lists.
 
 ## Why no built-in correlation to external systems
 

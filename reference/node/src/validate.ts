@@ -26,7 +26,7 @@ export type ValidationResult =
 
 /**
  * Canonical RFC 3339 grammar for `sent_at`, kept as a string so it can be
- * shared byte-for-byte with `spec/schema.json`'s `sent_at.pattern` — the
+ * shared byte-for-byte with `spec/schema.json`'s `sent_at.pattern`. The
  * equivalence test asserts the two are identical, preventing future drift.
  *
  * It bounds month (01–12), day (01–31), hour (00–23), minute/second (00–59),
@@ -277,7 +277,7 @@ export interface SequenceOptions {
  *
  * Enforces §4.5–§4.6 of the spec:
  *   - exactly one `started`, at the beginning
- *   - the last event is a terminal (`done` or terminal `blocked`) — unless
+ *   - the last event is a terminal (`done` or terminal `blocked`), unless
  *     `options.partial` is set (in-flight prefix)
  *   - at most one `done`, and no events after it
  *   - after `blocked`, the next event is `milestone` (resume), `done`, or

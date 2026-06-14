@@ -6,7 +6,7 @@ The Protocol is a pre-1.0 draft. Only the latest published version (currently **
 
 ## Reporting a vulnerability
 
-> **TODO (before public launch):** add the private disclosure contact here — either a security email (e.g. `security@…`) or enable GitHub private vulnerability reporting for this repository and link it. Until then this section is a placeholder.
+> **TODO (before public launch):** add the private disclosure contact here. Either a security email (e.g. `security@…`) or enable GitHub private vulnerability reporting for this repository and link it. Until then this section is a placeholder.
 
 Please report suspected vulnerabilities **privately**, not as a public issue. Until the contact above is filled in, open a minimal private channel with the maintainer rather than disclosing details publicly.
 

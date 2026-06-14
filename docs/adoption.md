@@ -1,6 +1,6 @@
 # Adoption guide
 
-This guide walks through three common ways to integrate the Agent Arc Status Protocol into existing work. Each is a sketch — copy and adapt to your stack.
+This guide walks through three common ways to integrate the Agent Arc Status Protocol into existing work. Each is a sketch. Copy and adapt to your stack.
 
 ## 1. Emit from a long-running agent script
 
@@ -104,15 +104,15 @@ app.listen(8080);
 A more sophisticated consumer:
 
 - **Threads by `arc_id`** so a multi-event arc renders as one Slack thread, one Telegram conversation, one collapsible card on a status page.
-- **Suppresses heartbeats** in noisy surfaces — heartbeats matter for stall detection, but humans don't always need them in their inbox.
-- **Tracks silence** — if no event arrives for an `arc_id` for >2× the silence window, fire your own alert.
+- **Suppresses heartbeats** in noisy surfaces: heartbeats matter for stall detection, but humans don't always need them in their inbox.
+- **Tracks silence**: if no event arrives for an `arc_id` for >2× the silence window, fire your own alert.
 - **Records raw events** to a log or DB for replay, debugging, and future KB compounding.
 
 ## 3. Add a silence backstop without modifying the emitter
 
-If your emitter is well-behaved but you don't trust it not to crash, run a sidecar watchdog. The reference `SilenceWatchdog` tracks each arc's **local receipt time** — not its `sent_at`, so a skewed or delayed sender can't look alive — and reports the arcs that have gone quiet past the silence window. Drive it from a timer independent of the work loop.
+If your emitter is well-behaved but you don't trust it not to crash, run a sidecar watchdog. The reference `SilenceWatchdog` tracks each arc's **local receipt time** (not its `sent_at`, so a skewed or delayed sender can't look alive) and reports the arcs that have gone quiet past the silence window. Drive it from a timer independent of the work loop.
 
-This pattern is especially useful when emitters are not under your control — e.g. you're consuming from a third-party agent and want to detect stalls without their cooperation.
+This pattern is especially useful when emitters are not under your control, e.g. you're consuming from a third-party agent and want to detect stalls without their cooperation.
 
 ```ts
 import { SilenceWatchdog, type ArcStatusEvent } from "@agent-arc-status/reference";

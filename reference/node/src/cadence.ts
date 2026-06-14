@@ -1,5 +1,5 @@
 /**
- * Cadence discipline as executable code — the part of the Protocol that the
+ * Cadence discipline as executable code: the part of the Protocol that the
  * v0.1 reference left as prose.
  *
  *   - `CadenceController` drives one arc's emission discipline: it gates
@@ -12,7 +12,7 @@
  * Both take an injectable `now()` so behaviour is deterministic under test, and
  * are meant to be driven by a timer INDEPENDENT of the work loop (§5.2): an
  * emitter that drives its own heartbeat from the work loop cannot honour the
- * silence backstop in the one case it exists for — when the work loop is what
+ * silence backstop in the one case it exists for: when the work loop is what
  * stalled. Zero dependencies.
  */
 
@@ -140,7 +140,7 @@ export interface StalledArc {
 /**
  * Multi-arc stall detector for a consumer or sidecar. Tracks the LOCAL receipt
  * time of each arc's most recent event and reports the arcs that have gone
- * quiet past the silence window — including those whose own heartbeat is
+ * quiet past the silence window, including those whose own heartbeat is
  * missing, which is the failure the backstop exists to surface.
  */
 export class SilenceWatchdog {

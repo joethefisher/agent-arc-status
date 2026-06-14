@@ -1,6 +1,6 @@
 # Comparison with adjacent systems
 
-The Agent Arc Status Protocol fills a specific gap. It is not a competitor to most of the tools listed below — most of them solve adjacent problems and can be used alongside the Protocol. This document exists so you can place the Protocol in your existing mental map and know when to reach for it versus something else.
+The Agent Arc Status Protocol fills a specific gap. It is not a competitor to most of the tools listed below; most of them solve adjacent problems and can be used alongside the Protocol. This document exists so you can place the Protocol in your existing mental map and know when to reach for it versus something else.
 
 ## Quick decision matrix
 
@@ -19,7 +19,7 @@ The Agent Arc Status Protocol fills a specific gap. It is not a competitor to mo
 
 **What it is:** A standard for distributed tracing, metrics, and logs in distributed systems. Spans model request lifecycles end-to-end.
 
-**Why it doesn't solve the silence problem:** OTel spans have a fixed lifecycle — they start, possibly emit child spans, and end with a status (`OK`, `ERROR`, `UNSET`). There is no first-class notion of *progress reporting from inside a long-running span*. OTel was designed for sub-second to single-digit-second spans, not for multi-hour autonomous work.
+**Why it doesn't solve the silence problem:** OTel spans have a fixed lifecycle: they start, possibly emit child spans, and end with a status (`OK`, `ERROR`, `UNSET`). There is no first-class notion of *progress reporting from inside a long-running span*. OTel was designed for sub-second to single-digit-second spans, not for multi-hour autonomous work.
 
 **How they compose:** An arc MAY contain one or more OTel traces. The `arc_id` MAY be carried as an OTel span attribute (e.g. `agent.arc.id`) for correlation. A consumer of arc-status events can use the `arc_id` to drill into the underlying trace when more detail is needed.
 
@@ -32,7 +32,7 @@ The Agent Arc Status Protocol fills a specific gap. It is not a competitor to mo
 
 **What they are:** Observability platforms purpose-built for LLM-driven applications. They capture every prompt, completion, tool call, and chain step, with a UI for inspecting and debugging.
 
-**Why they don't solve the silence problem:** They're optimized for *retrospective debugging*, not real-time progress to external consumers. Pulling progress out of LangSmith into a non-LangChain consumer requires custom integration. They're also vendor-coupled — adopting them means committing your observability layer to one platform.
+**Why they don't solve the silence problem:** They're optimized for *retrospective debugging*, not real-time progress to external consumers. Pulling progress out of LangSmith into a non-LangChain consumer requires custom integration. They're also vendor-coupled: adopting them means committing your observability layer to one platform.
 
 **How they compose:** A LangChain agent using LangSmith for internal observability can additionally emit arc-status events at human-meaningful boundaries. LangSmith holds the detailed trace; the arc-status stream holds the progress headline.
 
@@ -68,7 +68,7 @@ The Agent Arc Status Protocol fills a specific gap. It is not a competitor to mo
 
 **What it is:** A cross-vendor protocol for agents to discover one another (capability cards), delegate tasks, and exchange messages about those tasks. Announced by Google in 2025 and governed under the Linux Foundation.
 
-**Why it's not the same problem:** A2A standardizes *how one agent hands a task to another and converses about it*. It does not standardize the in-flight liveness/progress signal a long-running delegated task emits *while it executes* — from A2A's vantage a task is a request/response with messages, not a cadence-disciplined progress stream a human or dashboard watches.
+**Why it's not the same problem:** A2A standardizes *how one agent hands a task to another and converses about it*. It does not standardize the in-flight liveness/progress signal a long-running delegated task emits *while it executes*. From A2A's vantage a task is a request/response with messages, not a cadence-disciplined progress stream a human or dashboard watches.
 
 **How they compose:** An A2A Task MAY carry an `arc_id`; the delegate emits arc-status events that the delegator (or a human console) consumes to know the delegated work is alive and moving. A2A moves the work between agents; the Arc Status Protocol reports its progress.
 
@@ -78,7 +78,7 @@ The Agent Arc Status Protocol fills a specific gap. It is not a competitor to mo
 
 ## Generic webhook platforms (Svix, Hookdeck, Inngest webhooks)
 
-**What they are:** Infrastructure for reliable webhook delivery — retries, signatures, replay, dashboards.
+**What they are:** Infrastructure for reliable webhook delivery: retries, signatures, replay, dashboards.
 
 **Why they're not a substitute:** Svix and Hookdeck deliver any payload, including arc-status events. They don't define the vocabulary, the phases, the cadence rule, or the silence backstop. They are the *plumbing*; the Protocol is the *language*.
 

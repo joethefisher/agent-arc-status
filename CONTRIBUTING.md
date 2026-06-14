@@ -31,7 +31,7 @@ The spec is normative. Changes to it can break adopters. We treat it like an RFC
    - Updated examples if the change affects emission
    - Updated reference implementation + tests if the change affects validation or rendering
    - A justification under `docs/design-rationale.md` if the change reflects a design shift
-4. **Adopter feedback is welcomed** when available — a comment from someone implementing the Protocol is a strong signal for a non-trivial change, though not a hard gate while the draft is young.
+4. **Adopter feedback is welcomed** when available. A comment from someone implementing the Protocol is a strong signal for a non-trivial change, though not a hard gate while the draft is young.
 
 Minor revisions (editorial fixes, clarifications, schema tightening) ship as a patch (0.1.0 → 0.1.1). Additive changes ship as minor (0.1.x → 0.2.0). Breaking changes ship as major (0.x → 1.0).
 
@@ -39,7 +39,7 @@ Minor revisions (editorial fixes, clarifications, schema tightening) ship as a p
 
 These are normal software contributions and follow the usual flow:
 
-1. Open an issue or jump to a PR — your call.
+1. Open an issue or jump to a PR. Your call.
 2. Tests must pass and typecheck must be clean.
 3. New behavior needs tests.
 4. Renames and refactors are fine; we prefer them small.

@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 The spec and the reference implementation are versioned together (both at v0.2.0). Once they diverge in version, this changelog will distinguish them per release.
 
-## [0.2.0] — 2026-06-14
+## [0.2.0] - 2026-06-14
 
 This release hardens the draft against a pre-publication review. Several changes are breaking; because the Protocol is still a pre-1.0 draft, they ship as a minor per the [versioning policy](spec/v0.2.md#10-versioning). See **Migration** below.
 
@@ -39,7 +39,7 @@ This release hardens the draft against a pre-publication review. Several changes
 - `validateSequence` now rejects an arc that does not end in `done` or terminal `blocked`; pass `{ partial: true }` to validate an in-flight prefix.
 - Calendar-impossible `sent_at` values are now rejected.
 
-## [0.1.0] — 2026-06-13
+## [0.1.0] - 2026-06-13
 
 ### Added
 

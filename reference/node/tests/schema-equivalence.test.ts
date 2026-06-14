@@ -49,11 +49,11 @@ interface Case {
 
 const cases: Case[] = [
   { name: "minimal valid", candidate: baseValid },
-  { name: "all phases — started", candidate: { ...baseValid, phase: "started" } },
-  { name: "all phases — milestone", candidate: { ...baseValid, phase: "milestone" } },
-  { name: "all phases — heartbeat", candidate: { ...baseValid, phase: "heartbeat" } },
-  { name: "all phases — done", candidate: { ...baseValid, phase: "done" } },
-  { name: "all phases — blocked", candidate: { ...baseValid, phase: "blocked" } },
+  { name: "all phases: started", candidate: { ...baseValid, phase: "started" } },
+  { name: "all phases: milestone", candidate: { ...baseValid, phase: "milestone" } },
+  { name: "all phases: heartbeat", candidate: { ...baseValid, phase: "heartbeat" } },
+  { name: "all phases: done", candidate: { ...baseValid, phase: "done" } },
+  { name: "all phases: blocked", candidate: { ...baseValid, phase: "blocked" } },
   { name: "with step+total equal", candidate: { ...baseValid, step: 5, total: 5 } },
   { name: "with step < total", candidate: { ...baseValid, step: 2, total: 5 } },
   { name: "with eta_minutes zero", candidate: { ...baseValid, eta_minutes: 0 } },
@@ -64,7 +64,7 @@ const cases: Case[] = [
   { name: "with body markdown", candidate: { ...baseValid, body: "**details**" } },
   { name: "with x_ extension", candidate: { ...baseValid, x_app_correlation: "abc" } },
 
-  // Invalid cases — schema and validator MUST both reject these.
+  // Invalid cases. Schema and validator MUST both reject these.
   { name: "missing arc_id", candidate: { phase: "started", title: "x", sent_at: baseValid.sent_at } },
   { name: "missing phase", candidate: { ...baseValid, phase: undefined } },
   { name: "missing title", candidate: { ...baseValid, title: undefined } },
@@ -83,10 +83,10 @@ const cases: Case[] = [
   { name: "unknown non-x_ field", candidate: { ...baseValid, parent_arc_id: "a2" } },
   { name: "wrong-case X_ prefix field", candidate: { ...baseValid, X_FOO: "bar" } },
 
-  // Documented divergence — schema permits step > total; validator rejects.
+  // Documented divergence: schema permits step > total; validator rejects.
   { name: "step > total (documented divergence)", candidate: { ...baseValid, step: 6, total: 5 }, knownDivergence: true },
 
-  // sent_at grammar — schema pattern and validator regex must agree.
+  // sent_at grammar: schema pattern and validator regex must agree.
   { name: "sent_at no fractional", candidate: { ...baseValid, sent_at: "2026-06-14T02:00:00Z" } },
   { name: "sent_at 9-digit fractional", candidate: { ...baseValid, sent_at: "2026-06-14T02:00:00.123456789Z" } },
   { name: "sent_at +00:00 offset", candidate: { ...baseValid, sent_at: "2026-06-14T02:00:00.000+00:00" } },
@@ -98,7 +98,7 @@ const cases: Case[] = [
   { name: "sent_at month 13", candidate: { ...baseValid, sent_at: "2026-13-01T00:00:00Z" } },
   { name: "sent_at offset > 14h", candidate: { ...baseValid, sent_at: "2026-06-14T02:00:00+15:00" } },
 
-  // Documented divergence #2 — the schema pattern permits calendar-impossible
+  // Documented divergence #2: the schema pattern permits calendar-impossible
   // dates (a regex can't express per-month day limits); the validator rejects
   // them via a round-trip. Same contract discipline as step > total.
   { name: "sent_at Feb 30 (documented divergence)", candidate: { ...baseValid, sent_at: "2026-02-30T00:00:00Z" }, knownDivergence: true },
