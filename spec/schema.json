@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/joethefisher/agent-arc-status/v0.2.0/spec/schema.json",
+  "title": "ArcStatusEvent",
+  "description": "An arc.status event as defined by the Agent Arc Status Protocol v0.2.",
+  "type": "object",
+  "required": ["arc_id", "phase", "title", "sent_at"],
+  "additionalProperties": false,
+  "patternProperties": {
+    "^x_": {}
+  },
+  "properties": {
+    "arc_id": {
+      "type": "string",
+      "description": "Stable identifier for the arc. All events in one arc share this value. RFC 4122 UUIDs are RECOMMENDED.",
+      "minLength": 1,
+      "maxLength": 128,
+      "examples": ["00000000-0000-4000-8000-000000000001"]
+    },
+    "phase": {
+      "type": "string",
+      "description": "Lifecycle position of the arc at the moment of emission.",
+      "enum": ["started", "milestone", "heartbeat", "done", "blocked"]
+    },
+    "title": {
+      "type": "string",
+      "description": "Short human-readable label for this event. Single line, no newlines.",
+      "minLength": 1,
+      "maxLength": 200,
+      "pattern": "^[^\\n]+$",
+      "examples": [
+        "build Pulsefeed v0.1",
+        "milestone 6/11: routing table + worker shipped",
+        "still working: debugging systemd unit",
+        "v0.1 complete, 43 tests, deployed"
+      ]
+    },
+    "body": {
+      "type": "string",
+      "description": "Longer freeform body, optionally containing markdown.",
+      "maxLength": 32000
+    },
+    "step": {
+      "type": "integer",
+      "description": "1-indexed step number within a sequenced arc.",
+      "minimum": 1
+    },
+    "total": {
+      "type": "integer",
+      "description": "Total number of steps in a sequenced arc.",
+      "minimum": 1
+    },
+    "eta_minutes": {
+      "type": "number",
+      "description": "Emitter's current estimate of minutes remaining to done.",
+      "minimum": 0
+    },
+    "sent_at": {
+      "type": "string",
+      "pattern": "^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])T([01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(\\.\\d{1,9})?(Z|[+-](0\\d|1[0-4]):[0-5]\\d)$",
+      "description": "UTC timestamp at which the event was generated, in RFC 3339 form. The grammar is a self-contained pattern (no `format` dependency) so the schema validates under any standard JSON Schema validator with no plugins."
+    },
+    "arc_kind": {
+      "type": "string",
+      "description": "Optional free-form label naming the kind of work. Reserved for consumer routing; the Protocol assigns it no semantics.",
+      "maxLength": 64,
+      "examples": ["build", "migration", "triage", "outbound"]
+    },
+    "protocol_version": {
+      "type": "string",
+      "description": "The Protocol version the emitter targets, e.g. 0.1.",
+      "pattern": "^\\d+\\.\\d+(\\.\\d+)?$",
+      "examples": ["0.1", "0.1.0"]
+    }
+  },
+  "$comment": "JSON Schema 2020-12 cannot express two constraints this Protocol imposes; implementations validating only against this schema MUST apply them separately, and the reference implementation in `reference/node/` enforces both. (1) Cross-field: if both `step` and `total` are present, `step` MUST be ≤ `total`. (2) Calendar validity: the `sent_at` pattern bounds the day to 01–31 but cannot express per-month limits, so it admits impossible dates (e.g. 2026-02-30) that emitters MUST NOT produce and conformant validators MUST reject."
+}
