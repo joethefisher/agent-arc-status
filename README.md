@@ -1,7 +1,7 @@
 # Agent Arc Status Protocol
 
 > **A standard event vocabulary for autonomous agent work-in-progress.**
-> So humans, agents, and dashboards can tell whether a long-running arc is making progress, idling, or stuck — without polling the agent or peeking into its session.
+> So humans, agents, and dashboards can tell whether a long-running arc is making progress, idling, or stuck, without polling the agent or peeking into its session.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Spec: v0.2](https://img.shields.io/badge/Spec-v0.2-green.svg)](spec/v0.2.md)
@@ -15,27 +15,27 @@ You give an autonomous agent a real task. It accepts. Then... silence.
 
 - Five minutes in: probably still working.
 - Twenty minutes in: is it stuck? Did it crash? Is it about to finish?
-- An hour in: you open the session to check. The agent is fine but loses cache. You break flow for nothing — or you don't check, and it actually crashed forty minutes ago.
+- An hour in: you open the session to check. The agent is fine but loses cache. You break flow for nothing. Or you don't check, and it actually crashed forty minutes ago.
 
 Every team building with long-running agents hits this. The usual responses:
 
-- **Polling** the agent for status — interrupts its work, costs tokens, doesn't scale.
-- **Log scraping** — every team invents their own format, nothing is portable.
-- **Custom observability tooling** — solves it once, for one stack, behind a vendor.
-- **"It's fine, just wait"** — guesswork as a strategy.
+- **Polling** the agent for status: interrupts its work, costs tokens, doesn't scale.
+- **Log scraping**: every team invents their own format, nothing is portable.
+- **Custom observability tooling**: solves it once, for one stack, behind a vendor.
+- **"It's fine, just wait"**: guesswork as a strategy.
 
 None of these compose. None of them work when Agent A wants to know if Agent B is making progress on a delegated task.
 
 ## What this is
 
-A small, opinionated protocol — vocabulary plus delivery semantics — for **agents to emit progress events about a unit of authorized work** (an "arc").
+A small, opinionated protocol that gives agents a shared vocabulary and delivery semantics for **emitting progress events about a unit of authorized work** (an "arc").
 
 It standardizes:
 
-- **What an event looks like** — JSON shape, required vs. optional fields, semantic versioning.
-- **What phases exist** — `started`, `milestone`, `heartbeat`, `done`, `blocked`. That's it.
-- **When to emit** — a cadence floor (don't fire on trivial work) and a silence backstop (fire every 20 min in long arcs so silence is unambiguous).
-- **How to deliver** — transport-agnostic; works over webhooks, message queues, MCP, anything that moves JSON.
+- **What an event looks like**: JSON shape, required vs. optional fields, semantic versioning.
+- **What phases exist**: `started`, `milestone`, `heartbeat`, `done`, `blocked`. That's it.
+- **When to emit**: a cadence floor (don't fire on trivial work) and a silence backstop (fire every 20 min in long arcs so silence is unambiguous).
+- **How to deliver**: transport-agnostic; works over webhooks, message queues, MCP, anything that moves JSON.
 
 It is deliberately not:
 
@@ -90,7 +90,7 @@ See [`examples/`](examples/) for realistic full sequences (short arc, multi-mile
 | Phase | When to fire | How often |
 |---|---|---|
 | `started` | Arc begins, *and* expected duration exceeds the cadence floor (default: 5 min) | Exactly once |
-| `milestone` | A meaningful checkpoint — a commit, a service up, a sub-goal hit | Per checkpoint |
+| `milestone` | A meaningful checkpoint: a commit, a service up, a sub-goal hit | Per checkpoint |
 | `heartbeat` | No other event has fired in the silence window (default: 20 min) and the arc is still active | Auto-fired by the silence backstop |
 | `done` | The arc is complete and verified from the consumer's vantage point | Exactly once |
 | `blocked` | Hard blocker that requires external input to resolve | At most once per blocker; emit a `milestone` when unblocked |
@@ -99,7 +99,7 @@ Full semantics, MUST/SHOULD/MAY rules, and validation logic live in [spec/v0.2.m
 
 ## Reference implementation
 
-A small TypeScript library — parser, validator, renderer — lives in [`reference/node/`](reference/node/). It is the conformance reference, not the only allowed implementation. Anyone can implement the protocol in any language; this one exists so a teammate can `npm install` and start emitting valid events in five minutes.
+A small TypeScript library (parser, validator, renderer) lives in [`reference/node/`](reference/node/). It is the conformance reference, not the only allowed implementation. Anyone can implement the protocol in any language; this one exists so a teammate can `npm install` and start emitting valid events in five minutes.
 
 ```bash
 cd reference/node
@@ -111,12 +111,12 @@ npm test
 
 The protocol came out of a real pain: a builder running long autonomous agent arcs, watching them go silent for 20+ minutes at a stretch, and having no way to tell "alive and grinding" from "wedged and dead." Every workaround we tried (polling, log-tailing, opening the session) traded one problem for another.
 
-We wrote down the smallest protocol that would have solved it on day one — a phase vocabulary, a cadence rule, a silence backstop — and discovered that the same primitive solves four other problems we hadn't been thinking about:
+We wrote down the smallest protocol that would have solved it on day one (a phase vocabulary, a cadence rule, a silence backstop), and discovered that the same primitive solves four other problems we hadn't been thinking about:
 
-1. **Agent-to-agent task handoff** — delegated work is just an arc with a different observer.
-2. **Long-running customer-facing AI features** — the same event stream feeds a progress bar.
-3. **Audit + replay** — recording arc-status streams gives you a per-arc timeline for free.
-4. **Cross-stack observability** — agents from different frameworks can report progress to the same dashboard.
+1. **Agent-to-agent task handoff**: delegated work is just an arc with a different observer.
+2. **Long-running customer-facing AI features**: the same event stream feeds a progress bar.
+3. **Audit + replay**: recording arc-status streams gives you a per-arc timeline for free.
+4. **Cross-stack observability**: agents from different frameworks can report progress to the same dashboard.
 
 That breadth, combined with the fact that nothing in the ecosystem standardizes it today, is why we think it's worth publishing as a community spec rather than keeping it in-house.
 
@@ -124,7 +124,7 @@ Longer-form rationale: [docs/motivation.md](docs/motivation.md).
 
 ## Status
 
-**v0.2 — draft.** The protocol has been dogfooded in one system (the authoring system, n=1) and is being published for community review before v1.0. We expect to evolve it based on what real users report. Breaking changes between draft versions are possible; once we cut v1.0, we follow the [versioning policy](spec/v0.2.md#10-versioning) in the spec.
+**v0.2 draft.** The protocol has been dogfooded in one system (the authoring system, n=1) and is being published for community review before v1.0. We expect to evolve it based on what real users report. Breaking changes between draft versions are possible; once we cut v1.0, we follow the [versioning policy](spec/v0.2.md#10-versioning) in the spec.
 
 ## How to engage
 
@@ -134,4 +134,4 @@ Longer-form rationale: [docs/motivation.md](docs/motivation.md).
 
 ## License
 
-MIT — see [LICENSE](LICENSE). Use it, fork it, vendor it, embed it. No warranty. Attribution welcome but not required.
+MIT. See [LICENSE](LICENSE). Use it, fork it, vendor it, embed it. No warranty. Attribution welcome but not required.
