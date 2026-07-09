@@ -47,7 +47,7 @@ These are normal software contributions and follow the usual flow:
 ### Reference impl development
 
 ```bash
-cd reference/node
+# from the repo root (npm workspaces):
 npm install
 npm test
 npm run typecheck

@@ -10,4 +10,4 @@ Each file in this directory is a [JSON Lines](https://jsonlines.org/) stream of 
 | [`04-blocked-and-resumed.jsonl`](04-blocked-and-resumed.jsonl) | A blocker arrives mid-arc, then resolves | `blocked` → resume via `milestone` → `done`. The long wait after `blocked` carries no heartbeat. A blocked arc is not silently working, and heartbeat is not a legal resume signal (§4.5/§4.6). |
 | [`05-terminal-blocked.jsonl`](05-terminal-blocked.jsonl) | A blocker arrives and never resolves | An arc that legitimately ends in `blocked` rather than `done`, with heartbeats keeping the active investigation under the silence window. |
 
-Each event in these files validates against [`spec/schema.json`](../spec/schema.json), and each full stream is conformant under the reference sequence validator. The reference implementation [`reference/node/`](../reference/node/) uses these as test fixtures.
+Each event in these files validates against [`spec/schema.json`](../spec/schema.json), and each full stream is conformant under the reference sequence validator. The reference implementation [`packages/reference/`](../packages/reference/) uses these as test fixtures.

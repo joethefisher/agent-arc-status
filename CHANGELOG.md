@@ -45,7 +45,7 @@ This release hardens the draft against a pre-publication review. Several changes
 
 - Initial draft of the Agent Arc Status Protocol specification ([`spec/v0.2.md`](spec/v0.2.md))
 - JSON Schema for `arc.status` events ([`spec/schema.json`](spec/schema.json))
-- TypeScript reference implementation ([`reference/node/`](reference/node/))
+- TypeScript reference implementation ([`packages/reference/`](packages/reference/))
   - Types matching the wire schema
   - Structural validator (`validate`)
   - Sequence validator (`validateSequence`)

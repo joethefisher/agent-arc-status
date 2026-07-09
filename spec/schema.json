@@ -73,5 +73,5 @@
       "examples": ["0.1", "0.1.0"]
     }
   },
-  "$comment": "JSON Schema 2020-12 cannot express two constraints this Protocol imposes; implementations validating only against this schema MUST apply them separately, and the reference implementation in `reference/node/` enforces both. (1) Cross-field: if both `step` and `total` are present, `step` MUST be ≤ `total`. (2) Calendar validity: the `sent_at` pattern bounds the day to 01–31 but cannot express per-month limits, so it admits impossible dates (e.g. 2026-02-30) that emitters MUST NOT produce and conformant validators MUST reject."
+  "$comment": "JSON Schema 2020-12 cannot express two constraints this Protocol imposes; implementations validating only against this schema MUST apply them separately, and the reference implementation in `packages/reference/` enforces both. (1) Cross-field: if both `step` and `total` are present, `step` MUST be ≤ `total`. (2) Calendar validity: the `sent_at` pattern bounds the day to 01–31 but cannot express per-month limits, so it admits impossible dates (e.g. 2026-02-30) that emitters MUST NOT produce and conformant validators MUST reject."
 }
