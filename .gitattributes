@@ -1,0 +1,5 @@
+# Force LF line endings on every platform. The conformance corpus is hashed
+# (manifest sha256), so a CRLF checkout on Windows would spuriously fail the
+# drift guard. Keeping all text files LF also keeps examples/*.jsonl and shell
+# snippets consistent across contributors.
+* text=auto eol=lf
