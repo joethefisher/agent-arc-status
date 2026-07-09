@@ -1,0 +1,46 @@
+{
+  "name": "@agent-arc-status/adapter-mcp",
+  "version": "0.3.0",
+  "description": "Bridge Model Context Protocol progress notifications and Agent Arc Status Protocol events, in both directions.",
+  "license": "MIT",
+  "author": "Joe Fisher",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joethefisher/agent-arc-status.git",
+    "directory": "packages/adapter-mcp"
+  },
+  "homepage": "https://github.com/joethefisher/agent-arc-status#readme",
+  "bugs": "https://github.com/joethefisher/agent-arc-status/issues",
+  "keywords": ["agent", "arc-status", "mcp", "model-context-protocol"],
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": ["dist", "README.md", "LICENSE"],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "scripts": {
+    "build": "tsc",
+    "prepare": "tsc",
+    "typecheck": "tsc --noEmit"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@agent-arc-status/reference": "^0.3.0"
+  },
+  "peerDependencies": {
+    "@modelcontextprotocol/sdk": ">=1.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@modelcontextprotocol/sdk": { "optional": true }
+  }
+}

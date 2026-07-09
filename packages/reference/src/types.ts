@@ -39,3 +39,9 @@ export interface ArcStatusEvent {
   /** Application-specific extensions MUST use the `x_` prefix. */
   [extension: `x_${string}`]: unknown;
 }
+
+/**
+ * A sink for arc.status events — the injection point that emitters, transports,
+ * and framework adapters accept so they stay decoupled from any one transport.
+ */
+export type EmitFn = (event: ArcStatusEvent) => void | Promise<void>;
