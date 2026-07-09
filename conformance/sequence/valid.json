@@ -1,0 +1,244 @@
+[
+  {
+    "id": "sequence/valid/started-done",
+    "description": "minimal complete arc",
+    "events": [
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "started",
+        "title": "build atlas index",
+        "sent_at": "2026-06-14T09:00:00Z"
+      },
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "done",
+        "title": "complete",
+        "sent_at": "2026-06-14T09:05:00Z"
+      }
+    ],
+    "tier": "machine-verifiable",
+    "category": "phase-legality",
+    "sequence_valid": true
+  },
+  {
+    "id": "sequence/valid/started-milestone-done",
+    "description": "one milestone between start and done",
+    "events": [
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "started",
+        "title": "build atlas index",
+        "sent_at": "2026-06-14T09:00:00Z"
+      },
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "milestone",
+        "title": "progress",
+        "sent_at": "2026-06-14T09:05:00Z"
+      },
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "done",
+        "title": "complete",
+        "sent_at": "2026-06-14T09:10:00Z"
+      }
+    ],
+    "tier": "machine-verifiable",
+    "category": "phase-legality",
+    "sequence_valid": true
+  },
+  {
+    "id": "sequence/valid/started-milestone-heartbeat-milestone-done",
+    "description": "heartbeats interleave with milestones",
+    "events": [
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "started",
+        "title": "build atlas index",
+        "sent_at": "2026-06-14T09:00:00Z"
+      },
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "milestone",
+        "title": "progress",
+        "sent_at": "2026-06-14T09:05:00Z"
+      },
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "heartbeat",
+        "title": "still working",
+        "sent_at": "2026-06-14T09:10:00Z"
+      },
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "milestone",
+        "title": "progress",
+        "sent_at": "2026-06-14T09:15:00Z"
+      },
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "done",
+        "title": "complete",
+        "sent_at": "2026-06-14T09:20:00Z"
+      }
+    ],
+    "tier": "machine-verifiable",
+    "category": "phase-legality",
+    "sequence_valid": true
+  },
+  {
+    "id": "sequence/valid/blocked-then-resumed",
+    "description": "blocked resolves via a milestone then done",
+    "events": [
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "started",
+        "title": "build atlas index",
+        "sent_at": "2026-06-14T09:00:00Z"
+      },
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "blocked",
+        "title": "blocked on review",
+        "sent_at": "2026-06-14T09:05:00Z"
+      },
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "milestone",
+        "title": "unblocked",
+        "sent_at": "2026-06-14T09:10:00Z"
+      },
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "done",
+        "title": "complete",
+        "sent_at": "2026-06-14T09:15:00Z"
+      }
+    ],
+    "tier": "machine-verifiable",
+    "category": "phase-legality",
+    "sequence_valid": true
+  },
+  {
+    "id": "sequence/valid/terminal-blocked",
+    "description": "an arc may legitimately end in blocked",
+    "events": [
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "started",
+        "title": "build atlas index",
+        "sent_at": "2026-06-14T09:00:00Z"
+      },
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "blocked",
+        "title": "blocked on review",
+        "sent_at": "2026-06-14T09:05:00Z"
+      }
+    ],
+    "tier": "machine-verifiable",
+    "category": "phase-legality",
+    "sequence_valid": true
+  },
+  {
+    "id": "sequence/valid/terminal-blocked-with-heartbeats",
+    "description": "active investigation heartbeats then ends blocked",
+    "events": [
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "started",
+        "title": "build atlas index",
+        "sent_at": "2026-06-14T09:00:00Z"
+      },
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "heartbeat",
+        "title": "still working",
+        "sent_at": "2026-06-14T09:05:00Z"
+      },
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "milestone",
+        "title": "progress",
+        "sent_at": "2026-06-14T09:10:00Z"
+      },
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "heartbeat",
+        "title": "still working",
+        "sent_at": "2026-06-14T09:15:00Z"
+      },
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "blocked",
+        "title": "blocked on review",
+        "sent_at": "2026-06-14T09:20:00Z"
+      }
+    ],
+    "tier": "machine-verifiable",
+    "category": "phase-legality",
+    "sequence_valid": true
+  },
+  {
+    "id": "sequence/valid/blocked-then-done",
+    "description": "blocked resolves directly to done",
+    "events": [
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "started",
+        "title": "build atlas index",
+        "sent_at": "2026-06-14T09:00:00Z"
+      },
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "blocked",
+        "title": "blocked on review",
+        "sent_at": "2026-06-14T09:05:00Z"
+      },
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "done",
+        "title": "complete",
+        "sent_at": "2026-06-14T09:10:00Z"
+      }
+    ],
+    "tier": "machine-verifiable",
+    "category": "phase-legality",
+    "sequence_valid": true
+  },
+  {
+    "id": "sequence/valid/empty",
+    "description": "an empty sequence is vacuously valid",
+    "events": [],
+    "tier": "machine-verifiable",
+    "category": "phase-legality",
+    "sequence_valid": true
+  },
+  {
+    "id": "sequence/valid/out-of-order-sent-at-tolerated",
+    "description": "by default sent_at order is not enforced (§7.5)",
+    "events": [
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "started",
+        "title": "build",
+        "sent_at": "2026-06-14T09:00:00Z"
+      },
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "milestone",
+        "title": "progress",
+        "sent_at": "2026-06-14T08:55:00Z"
+      },
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "done",
+        "title": "complete",
+        "sent_at": "2026-06-14T09:10:00Z"
+      }
+    ],
+    "tier": "machine-verifiable",
+    "category": "phase-legality",
+    "sequence_valid": true
+  }
+]

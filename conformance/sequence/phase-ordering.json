@@ -1,0 +1,172 @@
+[
+  {
+    "id": "sequence/phase-ordering/not-started-first",
+    "description": "the first event must be started",
+    "events": [
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "milestone",
+        "title": "progress",
+        "sent_at": "2026-06-14T09:00:00Z"
+      }
+    ],
+    "tier": "machine-verifiable",
+    "category": "phase-legality",
+    "sequence_valid": false,
+    "issue": "not-started-first",
+    "issue_index": 0
+  },
+  {
+    "id": "sequence/phase-ordering/first-is-done",
+    "description": "an arc cannot open with done",
+    "events": [
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "done",
+        "title": "complete",
+        "sent_at": "2026-06-14T09:00:00Z"
+      }
+    ],
+    "tier": "machine-verifiable",
+    "category": "phase-legality",
+    "sequence_valid": false,
+    "issue": "not-started-first",
+    "issue_index": 0
+  },
+  {
+    "id": "sequence/phase-ordering/two-started",
+    "description": "exactly one started per arc",
+    "events": [
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "started",
+        "title": "build atlas index",
+        "sent_at": "2026-06-14T09:00:00Z"
+      },
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "started",
+        "title": "build atlas index",
+        "sent_at": "2026-06-14T09:05:00Z"
+      },
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "done",
+        "title": "complete",
+        "sent_at": "2026-06-14T09:10:00Z"
+      }
+    ],
+    "tier": "machine-verifiable",
+    "category": "phase-legality",
+    "sequence_valid": false,
+    "issue": "multiple-started"
+  },
+  {
+    "id": "sequence/phase-ordering/two-done",
+    "description": "at most one done per arc",
+    "events": [
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "started",
+        "title": "build atlas index",
+        "sent_at": "2026-06-14T09:00:00Z"
+      },
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "done",
+        "title": "complete",
+        "sent_at": "2026-06-14T09:05:00Z"
+      },
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "done",
+        "title": "complete",
+        "sent_at": "2026-06-14T09:10:00Z"
+      }
+    ],
+    "tier": "machine-verifiable",
+    "category": "phase-legality",
+    "sequence_valid": false,
+    "issue": "multiple-done"
+  },
+  {
+    "id": "sequence/phase-ordering/no-terminal",
+    "description": "a complete arc must end in a terminal event",
+    "events": [
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "started",
+        "title": "build atlas index",
+        "sent_at": "2026-06-14T09:00:00Z"
+      },
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "milestone",
+        "title": "progress",
+        "sent_at": "2026-06-14T09:05:00Z"
+      }
+    ],
+    "tier": "machine-verifiable",
+    "category": "phase-legality",
+    "sequence_valid": false,
+    "issue": "no-terminal",
+    "issue_index": 1
+  },
+  {
+    "id": "sequence/phase-ordering/event-after-done",
+    "description": "no events may follow done",
+    "events": [
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "started",
+        "title": "build atlas index",
+        "sent_at": "2026-06-14T09:00:00Z"
+      },
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "done",
+        "title": "complete",
+        "sent_at": "2026-06-14T09:05:00Z"
+      },
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "milestone",
+        "title": "progress",
+        "sent_at": "2026-06-14T09:10:00Z"
+      }
+    ],
+    "tier": "machine-verifiable",
+    "category": "phase-legality",
+    "sequence_valid": false,
+    "issue": "event-after-done"
+  },
+  {
+    "id": "sequence/phase-ordering/arc-id-mismatch",
+    "description": "all events in an arc must share one arc_id",
+    "events": [
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "started",
+        "title": "build",
+        "sent_at": "2026-06-14T09:00:00Z"
+      },
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000b2",
+        "phase": "milestone",
+        "title": "progress",
+        "sent_at": "2026-06-14T09:05:00Z"
+      },
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "done",
+        "title": "complete",
+        "sent_at": "2026-06-14T09:10:00Z"
+      }
+    ],
+    "tier": "machine-verifiable",
+    "category": "phase-legality",
+    "sequence_valid": false,
+    "issue": "arc-id-mismatch",
+    "issue_index": 1
+  }
+]

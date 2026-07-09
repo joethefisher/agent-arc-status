@@ -1,0 +1,25 @@
+{
+  "name": "@agent-arc-status/conformance",
+  "version": "0.3.0",
+  "private": true,
+  "description": "Runner that checks an implementation against the Agent Arc Status Protocol conformance corpus.",
+  "license": "MIT",
+  "author": "Joe Fisher",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "arc-conformance": "./dist/run.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "conformance": "node dist/run.js"
+  },
+  "dependencies": {
+    "@agent-arc-status/reference": "^0.3.0"
+  },
+  "devDependencies": {
+    "ajv": "^8.17.1"
+  }
+}

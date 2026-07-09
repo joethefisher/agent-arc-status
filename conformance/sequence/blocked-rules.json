@@ -1,0 +1,100 @@
+[
+  {
+    "id": "sequence/blocked-rules/consecutive-blocked",
+    "description": "two blocked events cannot be adjacent (§4.5)",
+    "events": [
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "started",
+        "title": "build atlas index",
+        "sent_at": "2026-06-14T09:00:00Z"
+      },
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "blocked",
+        "title": "blocked on review",
+        "sent_at": "2026-06-14T09:05:00Z"
+      },
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "blocked",
+        "title": "blocked on review",
+        "sent_at": "2026-06-14T09:10:00Z"
+      }
+    ],
+    "tier": "machine-verifiable",
+    "category": "phase-legality",
+    "sequence_valid": false,
+    "issue": "consecutive-blocked",
+    "issue_index": 2
+  },
+  {
+    "id": "sequence/blocked-rules/heartbeat-after-blocked",
+    "description": "heartbeat is not a legal resume signal",
+    "events": [
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "started",
+        "title": "build atlas index",
+        "sent_at": "2026-06-14T09:00:00Z"
+      },
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "blocked",
+        "title": "blocked on review",
+        "sent_at": "2026-06-14T09:05:00Z"
+      },
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "heartbeat",
+        "title": "still working",
+        "sent_at": "2026-06-14T09:10:00Z"
+      },
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "done",
+        "title": "complete",
+        "sent_at": "2026-06-14T09:15:00Z"
+      }
+    ],
+    "tier": "machine-verifiable",
+    "category": "phase-legality",
+    "sequence_valid": false,
+    "issue": "heartbeat-after-blocked",
+    "issue_index": 2
+  },
+  {
+    "id": "sequence/blocked-rules/started-after-blocked",
+    "description": "started cannot follow blocked",
+    "events": [
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "started",
+        "title": "build atlas index",
+        "sent_at": "2026-06-14T09:00:00Z"
+      },
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "blocked",
+        "title": "blocked on review",
+        "sent_at": "2026-06-14T09:05:00Z"
+      },
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "started",
+        "title": "build atlas index",
+        "sent_at": "2026-06-14T09:10:00Z"
+      },
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "done",
+        "title": "complete",
+        "sent_at": "2026-06-14T09:15:00Z"
+      }
+    ],
+    "tier": "machine-verifiable",
+    "category": "phase-legality",
+    "sequence_valid": false,
+    "issue": "started-after-blocked"
+  }
+]

@@ -1,0 +1,170 @@
+[
+  {
+    "id": "single-event/schema-invalid/not-object-null",
+    "description": "a null is not an object",
+    "event": null,
+    "schema_valid": false,
+    "validator_valid": false,
+    "tier": "machine-verifiable",
+    "category": "schema-validity"
+  },
+  {
+    "id": "single-event/schema-invalid/not-object-array",
+    "description": "an array is not an object",
+    "event": [],
+    "schema_valid": false,
+    "validator_valid": false,
+    "tier": "machine-verifiable",
+    "category": "schema-validity"
+  },
+  {
+    "id": "single-event/schema-invalid/not-object-string",
+    "description": "a string is not an object",
+    "event": "build atlas index",
+    "schema_valid": false,
+    "validator_valid": false,
+    "tier": "machine-verifiable",
+    "category": "schema-validity"
+  },
+  {
+    "id": "single-event/schema-invalid/not-object-number",
+    "description": "a number is not an object",
+    "event": 42,
+    "schema_valid": false,
+    "validator_valid": false,
+    "tier": "machine-verifiable",
+    "category": "schema-validity"
+  },
+  {
+    "id": "single-event/schema-invalid/missing-arc_id",
+    "description": "arc_id is required",
+    "event": {
+      "phase": "started",
+      "title": "x",
+      "sent_at": "2026-06-14T09:00:00Z"
+    },
+    "schema_valid": false,
+    "validator_valid": false,
+    "tier": "machine-verifiable",
+    "category": "schema-validity",
+    "issue_path": "arc_id"
+  },
+  {
+    "id": "single-event/schema-invalid/missing-phase",
+    "description": "phase is required",
+    "event": {
+      "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+      "title": "x",
+      "sent_at": "2026-06-14T09:00:00Z"
+    },
+    "schema_valid": false,
+    "validator_valid": false,
+    "tier": "machine-verifiable",
+    "category": "schema-validity",
+    "issue_path": "phase"
+  },
+  {
+    "id": "single-event/schema-invalid/missing-title",
+    "description": "title is required",
+    "event": {
+      "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+      "phase": "started",
+      "sent_at": "2026-06-14T09:00:00Z"
+    },
+    "schema_valid": false,
+    "validator_valid": false,
+    "tier": "machine-verifiable",
+    "category": "schema-validity",
+    "issue_path": "title"
+  },
+  {
+    "id": "single-event/schema-invalid/missing-sent_at",
+    "description": "sent_at is required",
+    "event": {
+      "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+      "phase": "started",
+      "title": "x"
+    },
+    "schema_valid": false,
+    "validator_valid": false,
+    "tier": "machine-verifiable",
+    "category": "schema-validity",
+    "issue_path": "sent_at"
+  },
+  {
+    "id": "single-event/schema-invalid/arc_id-wrong-type",
+    "description": "arc_id must be a string",
+    "event": {
+      "arc_id": 123,
+      "phase": "started",
+      "title": "build atlas index",
+      "sent_at": "2026-06-14T09:00:00Z"
+    },
+    "schema_valid": false,
+    "validator_valid": false,
+    "tier": "machine-verifiable",
+    "category": "schema-validity",
+    "issue_path": "arc_id"
+  },
+  {
+    "id": "single-event/schema-invalid/phase-not-in-enum",
+    "description": "phase must be one of the five",
+    "event": {
+      "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+      "phase": "planning",
+      "title": "build atlas index",
+      "sent_at": "2026-06-14T09:00:00Z"
+    },
+    "schema_valid": false,
+    "validator_valid": false,
+    "tier": "machine-verifiable",
+    "category": "schema-validity",
+    "issue_path": "phase"
+  },
+  {
+    "id": "single-event/schema-invalid/phase-wrong-case",
+    "description": "phase is case-sensitive",
+    "event": {
+      "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+      "phase": "Started",
+      "title": "build atlas index",
+      "sent_at": "2026-06-14T09:00:00Z"
+    },
+    "schema_valid": false,
+    "validator_valid": false,
+    "tier": "machine-verifiable",
+    "category": "schema-validity",
+    "issue_path": "phase"
+  },
+  {
+    "id": "single-event/schema-invalid/title-newline",
+    "description": "title must not contain a newline",
+    "event": {
+      "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+      "phase": "started",
+      "title": "line one\nline two",
+      "sent_at": "2026-06-14T09:00:00Z"
+    },
+    "schema_valid": false,
+    "validator_valid": false,
+    "tier": "machine-verifiable",
+    "category": "schema-validity",
+    "issue_path": "title"
+  },
+  {
+    "id": "single-event/schema-invalid/body-wrong-type",
+    "description": "body must be a string when present",
+    "event": {
+      "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+      "phase": "started",
+      "title": "build atlas index",
+      "sent_at": "2026-06-14T09:00:00Z",
+      "body": 123
+    },
+    "schema_valid": false,
+    "validator_valid": false,
+    "tier": "machine-verifiable",
+    "category": "schema-validity",
+    "issue_path": "body"
+  }
+]
