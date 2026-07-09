@@ -4,71 +4,44 @@ This guide walks through three common ways to integrate the Agent Arc Status Pro
 
 ## 1. Emit from a long-running agent script
 
-For a Node script, the smallest sufficient emitter is a function that POSTs an event to a webhook URL. The reference implementation gives you validation and types; you bring transport.
+The [`@agent-arc-status/emitter`](../packages/emitter/) package is the batteries-included producer. Its `run()` wrapper gives you the three things production emission needs for free: a `started` first, a `done` on success (or terminal `blocked` on throw), and an automatic silence backstop — so every stream it produces is sequence-valid no matter how the work exits.
 
 ```ts
-import { validate, type ArcStatusEvent } from "@agent-arc-status/reference";
-import { createHmac, randomUUID } from "node:crypto";
+import { ArcEmitter, httpTransport } from "@agent-arc-status/emitter";
 
-const ARC_STATUS_URL = process.env.ARC_STATUS_URL!;
-const ARC_STATUS_SECRET = process.env.ARC_STATUS_SECRET!;
-
-// Bring your own signing; here's a minimal HMAC-SHA256 over the body.
-function sign(body: string, secret: string): string {
-  return createHmac("sha256", secret).update(body).digest("hex");
-}
-
-async function emit(event: ArcStatusEvent): Promise<void> {
-  const result = validate(event);
-  if (!result.ok) {
-    console.error("invalid arc.status event:", result.issues);
-    return; // emission failures should not crash the work
-  }
-
-  const body = JSON.stringify(result.event);
-  const signature = sign(body, ARC_STATUS_SECRET);
-
-  await fetch(ARC_STATUS_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "X-Webhook-Event-Type": "arc.status",
-      "X-Webhook-Signature": signature,
-      "X-Webhook-Delivery-Id": randomUUID(),
-    },
-    body,
-  }).catch((err) => console.error("arc.status emit failed:", err));
-}
-
-// usage
-const arcId = crypto.randomUUID();
-await emit({
-  arc_id: arcId,
-  phase: "started",
+const arc = new ArcEmitter({
   title: "nightly: refresh customer health scores",
-  sent_at: new Date().toISOString(),
-  protocol_version: "0.1",
+  arcKind: "batch",
+  transport: httpTransport({
+    url: process.env.ARC_STATUS_URL!,
+    secret: process.env.ARC_STATUS_SECRET, // optional HMAC-SHA256 (webhook binding §8.1)
+  }),
 });
 
-// ... work happens ...
-
-await emit({
-  arc_id: arcId,
-  phase: "milestone",
-  title: "ingested 12k account records",
-  step: 1,
-  total: 4,
-  sent_at: new Date().toISOString(),
+await arc.run(async (arc) => {
+  await arc.milestone("ingested 12k account records", { step: 1, total: 4 });
+  // ... work happens; if it runs quiet, a heartbeat is emitted automatically ...
+  await arc.milestone("scored and persisted", { step: 4, total: 4 });
 });
-
-// ... etc ...
+// -> started, milestone, milestone, done  (all validated; heartbeats auto-filled)
 ```
 
-Three things to add for production use:
+Under the hood this reuses the reference `CadenceController` and `validate()`. If you'd rather hand-roll the emit loop, the reference gives you the primitives (`validate`, `CadenceController`, `SilenceWatchdog`) and you bring the transport — but the three rules below are exactly what `ArcEmitter` already enforces:
 
-- **A silence backstop.** Set a 20-minute timer that resets on every emit; if it fires, emit a `heartbeat` with whatever you're currently doing.
-- **A try/finally around the work.** Always emit `done` or `blocked` on exit, never leave an arc hanging.
+- **A silence backstop.** A 20-minute timer, independent of the work loop, that fires a `heartbeat` if nothing else has.
+- **A try/finally around the work.** Always emit `done` or `blocked` on exit; never leave an arc hanging.
 - **Idempotent delivery.** Treat emission as best-effort; never block work on a slow consumer.
+
+## 1b. Or don't write any code — pipe through the CLI
+
+For a script that already prints JSONL to stdout, the [`arc-status`](../packages/cli/) CLI renders, validates, and follows a stream with zero integration:
+
+```bash
+your-agent | arc-status render -          # live human lines
+arc-status validate run.jsonl             # exit 1 if anything is malformed (CI-friendly)
+arc-status tree run.jsonl                 # nest delegated arcs by x_parent_arc_id
+arc-status serve --port 8787              # or receive webhook events and render them live
+```
 
 ## 2. Consume in a status surface
 

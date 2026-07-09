@@ -94,12 +94,14 @@ We expect rough edges when:
 
 ## Where this is going
 
-v0.2 is a draft. The Protocol will reach v1.0 once at least one external implementation reports interoperability with the reference. We expect the design to absorb feedback from adopters before then, particularly around the [open questions in §12](../spec/v0.2.md#12-open-questions) of the spec.
+The protocol is still a draft (v0.2). It reaches v1.0 once at least one external implementation reports interoperability with the reference. We expect the design to absorb feedback from adopters before then, particularly around the [open questions in §12](../spec/v0.2.md#12-open-questions) of the spec.
 
-In parallel, we're working on:
+Since the v0.2 draft, the reference tooling has grown substantially (shipped as `0.3.0`, protocol still `0.2`):
 
-- A Python reference implementation, to demonstrate cross-language interop.
-- A full conformance test suite. v0.2 already exercises the machine-verifiable tier (schema + phase ordering) and ships the cadence discipline as code; the remaining gap is a packaged suite a third party can run against their own implementation.
-- Integration recipes for common frameworks (LangChain, Inngest, MCP servers).
+- **A Python reference implementation** ([`reference/python/`](../reference/python/)) — a faithful, zero-dependency 1:1 port that passes the same conformance corpus as the TypeScript reference, demonstrating cross-language interoperability.
+- **A packaged conformance suite** ([`conformance/`](../conformance/)) — a language-agnostic corpus any implementation runs with its own runner; two implementations agreeing on it is exactly the v1.0 interoperability evidence.
+- **Adoption surface** — a batteries-included [emitter](../packages/emitter/), a zero-dependency [`arc-status` CLI](../packages/cli/), a live [web dashboard](../packages/dashboard/), and framework adapters for [LangChain](../packages/adapter-langchain/), [MCP](../packages/adapter-mcp/), and [OpenTelemetry](../packages/adapter-otel/).
+
+Still ahead: real-world adopter feedback, and — once multi-agent delegation usage settles the shape — promoting the interim `x_parent_arc_id` convention to a first-class field.
 
 If you adopt the Protocol, [tell us about it](https://github.com/joethefisher/agent-arc-status/issues/new). The fastest way for a draft protocol to mature is to hear from real users.
