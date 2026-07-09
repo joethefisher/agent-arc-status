@@ -1,0 +1,36 @@
+{
+  "name": "agent-arc-status-monorepo",
+  "version": "0.3.0",
+  "private": true,
+  "type": "module",
+  "description": "Monorepo for the Agent Arc Status Protocol: spec, reference implementations, CLI, dashboard, adapters, and conformance suite.",
+  "license": "MIT",
+  "author": "Joe Fisher",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joethefisher/agent-arc-status.git"
+  },
+  "homepage": "https://github.com/joethefisher/agent-arc-status#readme",
+  "bugs": "https://github.com/joethefisher/agent-arc-status/issues",
+  "workspaces": [
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "prettier --check .",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "@types/node": "^22.5.0",
+    "ajv": "^8.17.1",
+    "prettier": "^3.3.0",
+    "typescript": "^5.6.0",
+    "vitest": "^4.1.8"
+  }
+}

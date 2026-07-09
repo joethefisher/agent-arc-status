@@ -21,10 +21,9 @@ Zero runtime dependencies.
 npm install @agent-arc-status/reference
 ```
 
-> Not yet published to npm. Until then, install straight from the subdirectory
-> on GitHub; the `prepare` script builds `dist/` on install:
-> `npm install github:joethefisher/agent-arc-status#main:reference/node`
-> or copy `src/` into your project. The surface is small.
+> Working from a clone instead? This package is a workspace in the
+> [monorepo](https://github.com/joethefisher/agent-arc-status); run `npm install` at the repo
+> root and the `prepare` script builds `dist/`. The surface is small enough to vendor `src/` too.
 
 ## Use
 
