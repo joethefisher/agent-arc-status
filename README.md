@@ -99,11 +99,10 @@ Full semantics, MUST/SHOULD/MAY rules, and validation logic live in [spec/v0.2.m
 
 ## Reference implementation
 
-A small TypeScript library (parser, validator, renderer) lives in [`reference/node/`](reference/node/). It is the conformance reference, not the only allowed implementation. Anyone can implement the protocol in any language; this one exists so a teammate can `npm install` and start emitting valid events in five minutes.
+This repository is an npm-workspaces monorepo. The zero-dependency TypeScript reference (parser, validator, renderer, cadence, state) lives in [`packages/reference/`](packages/reference/). It is the conformance reference, not the only allowed implementation. Anyone can implement the protocol in any language; this one exists so a teammate can `npm install` and start emitting valid events in five minutes.
 
 ```bash
-cd reference/node
-npm install
+npm install   # installs every workspace from the repo root
 npm test
 ```
 
