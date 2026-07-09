@@ -97,13 +97,32 @@ See [`examples/`](examples/) for realistic full sequences (short arc, multi-mile
 
 Full semantics, MUST/SHOULD/MAY rules, and validation logic live in [spec/v0.2.md](spec/v0.2.md).
 
-## Reference implementation
+## Implementations & tooling
 
-This repository is an npm-workspaces monorepo. The zero-dependency TypeScript reference (parser, validator, renderer, cadence, state) lives in [`packages/reference/`](packages/reference/). It is the conformance reference, not the only allowed implementation. Anyone can implement the protocol in any language; this one exists so a teammate can `npm install` and start emitting valid events in five minutes.
+This repository is an npm-workspaces monorepo. The zero-dependency TypeScript reference is the
+conformance reference — not the only allowed implementation. A [Python reference](reference/python/)
+mirrors it 1:1, and a [language-agnostic conformance suite](conformance/) lets any implementation
+prove interoperability (both references pass the same corpus).
+
+| Package | What it is |
+|---|---|
+| [`@agent-arc-status/reference`](packages/reference/) | Types, validator, renderer, cadence, state, delegation-tree tooling (zero deps, npm) |
+| [`agent-arc-status`](reference/python/) | Python reference implementation (zero deps, PyPI) |
+| [`@agent-arc-status/emitter`](packages/emitter/) | Batteries-included producer: started-first, done-on-exit, auto-heartbeat |
+| [`@agent-arc-status/cli`](packages/cli/) | `arc-status` — render / validate / tree / tail / serve a stream |
+| [`@agent-arc-status/dashboard`](packages/dashboard/) | `arc-dashboard` — a live web view of in-flight arcs |
+| [`@agent-arc-status/adapter-otel`](packages/adapter-otel/) · [`-mcp`](packages/adapter-mcp/) · [`-langchain`](packages/adapter-langchain/) | Framework/transport bridges |
+| [`conformance/`](conformance/) | The shared corpus + runners (the v1.0 interop gate) |
 
 ```bash
-npm install   # installs every workspace from the repo root
-npm test
+# Try the CLI in 30 seconds:
+npx @agent-arc-status/cli render examples/03-long-autonomous.jsonl
+
+# Use the library:
+npm install @agent-arc-status/reference     # or: pip install agent-arc-status
+
+# Work from a clone (npm workspaces):
+npm install && npm test
 ```
 
 ## Why we built this

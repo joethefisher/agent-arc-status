@@ -4,7 +4,26 @@ All notable changes to the Agent Arc Status Protocol and reference implementatio
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-The spec and the reference implementation are versioned together (both at v0.2.0). Once they diverge in version, this changelog will distinguish them per release.
+The spec and the reference implementations version independently once they diverge. As of `0.3.0` the **protocol/spec remains `0.2`** (no wire change) while the **implementations and tooling are `0.3.0`** — the first such split, which this changelog anticipated.
+
+## [0.3.0] - 2026-06-17
+
+Implementations and tooling only — **the protocol wire format is unchanged (still v0.2)**; `spec/schema.json` and its `$id` are untouched. This release turns the reference into an ecosystem.
+
+### Added
+
+- **Python reference implementation** (`reference/python/`, PyPI `agent-arc-status`) — a faithful, zero-dependency 1:1 port (validator, sequence validator, parser, renderer, cadence, state, delegation trees) with snake_case names, `py.typed`, and mypy-strict typing. It passes the same conformance corpus as the TypeScript reference.
+- **Language-agnostic conformance suite** (`conformance/`) — 74 checked-in cases (single-event + sequence + the five example streams) with separate `schema_valid`/`validator_valid` verdicts so schema-only implementations aren't failed on the documented divergences. Node and Python runners both pass it; their agreement is the cross-language interoperability evidence for v1.0.
+- **`@agent-arc-status/emitter`** — batteries-included producer: `run()` guarantees started-first + done/blocked-on-exit, with an automatic silence backstop and pluggable HTTP (webhook binding §8.1, optional HMAC) / stdout transports.
+- **`@agent-arc-status/cli`** (`arc-status`) — zero-dependency `render` / `validate` / `tree` / `tail` / `serve` for event streams; documented exit codes.
+- **`@agent-arc-status/dashboard`** (`arc-dashboard`) — a thin, zero-dependency live web view (validate → fold → SSE → client-rendered cards; §9.4 trust boundary enforced with `textContent`).
+- **Framework adapters** — `@agent-arc-status/adapter-otel`, `-mcp`, and `-langchain` (peer-dependency bridges).
+- **Delegation-tree tooling** — `reduceArcForest` / `renderArcForest` (and Python equivalents) built on the interim `x_parent_arc_id` convention (spec §12.1), with no schema change.
+
+### Changed
+
+- The repository is now an **npm-workspaces monorepo**; the TypeScript reference moved from `reference/node/` to `packages/reference/` (install it from npm as `@agent-arc-status/reference`).
+- CI adds a Python matrix (3.10–3.13 × ubuntu/macos/windows) and a cross-language conformance gate; tag-driven npm (provenance) and PyPI (trusted publishing) release workflows were added.
 
 ## [0.2.0] - 2026-06-14
 
