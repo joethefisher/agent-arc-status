@@ -13,6 +13,7 @@ from .cadence import (
     SilenceWatchdog,
     StalledArc,
 )
+from .forest import ArcForest, ArcTreeNode, reduce_arc_forest, render_arc_forest
 from .parse import JsonlLineError, JsonlParseResult, parse, parse_jsonl
 from .render import render
 from .state import ArcBlocker, ArcMilestone, ArcState, reduce_arc
@@ -37,11 +38,13 @@ __all__ = [
     "PROTOCOL_VERSION",
     "RFC3339_PATTERN",
     "ArcBlocker",
+    "ArcForest",
     "ArcMilestone",
     "ArcSeed",
     "ArcState",
     "ArcStatusEvent",
     "ArcStatusPhase",
+    "ArcTreeNode",
     "CadenceConfig",
     "CadenceController",
     "JsonlLineError",
@@ -57,7 +60,9 @@ __all__ = [
     "parse",
     "parse_jsonl",
     "reduce_arc",
+    "reduce_arc_forest",
     "render",
+    "render_arc_forest",
     "validate",
     "validate_sequence",
 ]

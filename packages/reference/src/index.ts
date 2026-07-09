@@ -57,5 +57,13 @@ export {
   type ArcMilestone,
 } from "./state.js";
 
+export {
+  reduceArcForest,
+  renderArcForest,
+  type ArcForest,
+  type ArcTreeNode,
+  type RenderForestOptions,
+} from "./forest.js";
+
 /** The Protocol version this package implements. */
 export const PROTOCOL_VERSION = "0.2.0";
