@@ -11,7 +11,12 @@
   },
   "homepage": "https://github.com/joethefisher/agent-arc-status#readme",
   "bugs": "https://github.com/joethefisher/agent-arc-status/issues",
-  "keywords": ["agent", "arc-status", "mcp", "model-context-protocol"],
+  "keywords": [
+    "agent",
+    "arc-status",
+    "mcp",
+    "model-context-protocol"
+  ],
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -21,14 +26,17 @@
       "import": "./dist/index.js"
     }
   },
-  "files": ["dist", "README.md", "LICENSE"],
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "publishConfig": {
     "access": "public",
     "provenance": true
   },
   "scripts": {
     "build": "tsc",
-    "prepare": "tsc",
     "typecheck": "tsc --noEmit"
   },
   "engines": {
@@ -41,6 +49,8 @@
     "@modelcontextprotocol/sdk": ">=1.0.0"
   },
   "peerDependenciesMeta": {
-    "@modelcontextprotocol/sdk": { "optional": true }
+    "@modelcontextprotocol/sdk": {
+      "optional": true
+    }
   }
 }

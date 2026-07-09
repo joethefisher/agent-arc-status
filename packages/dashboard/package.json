@@ -11,7 +11,16 @@
   },
   "homepage": "https://github.com/joethefisher/agent-arc-status#readme",
   "bugs": "https://github.com/joethefisher/agent-arc-status/issues",
-  "keywords": ["agent", "agents", "ai", "llm", "observability", "progress", "arc-status", "dashboard"],
+  "keywords": [
+    "agent",
+    "agents",
+    "ai",
+    "llm",
+    "observability",
+    "progress",
+    "arc-status",
+    "dashboard"
+  ],
   "type": "module",
   "bin": {
     "arc-dashboard": "./dist/bin/arc-dashboard.js"
@@ -24,14 +33,18 @@
       "import": "./dist/server.js"
     }
   },
-  "files": ["dist", "public", "README.md", "LICENSE"],
+  "files": [
+    "dist",
+    "public",
+    "README.md",
+    "LICENSE"
+  ],
   "publishConfig": {
     "access": "public",
     "provenance": true
   },
   "scripts": {
     "build": "tsc",
-    "prepare": "tsc",
     "typecheck": "tsc --noEmit"
   },
   "engines": {
