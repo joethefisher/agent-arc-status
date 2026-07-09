@@ -75,9 +75,7 @@ def reduce_arc_forest(events_by_arc: Mapping[str, list[ArcStatusEvent]]) -> ArcF
             raw_parent[arc_id] = pid
 
     # Effective parent links: only those whose parent is present in the input.
-    parent_of: dict[str, str] = {
-        aid: pid for aid, pid in raw_parent.items() if pid in nodes
-    }
+    parent_of: dict[str, str] = {aid: pid for aid, pid in raw_parent.items() if pid in nodes}
 
     # Break cycles: the parent graph is functional (<=1 parent per node), so a
     # cycle is a simple loop. Walk up from each node; on revisiting a node, cut
