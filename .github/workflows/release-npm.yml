@@ -1,0 +1,52 @@
+name: Release npm
+
+# Publishes the public @agent-arc-status/* packages when a v* tag is pushed.
+# Requires the repo secret NPM_TOKEN (an npm automation token with publish rights
+# to the @agent-arc-status scope). Uses npm provenance (OIDC).
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+  id-token: write # required for npm provenance
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          registry-url: "https://registry.npmjs.org"
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install, build, verify
+        run: |
+          npm ci
+          npm run typecheck
+          npm run build
+          npm test
+          node packages/conformance/dist/run.js
+
+      - name: Publish (reference first, then dependents)
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          set -euo pipefail
+          for pkg in \
+            @agent-arc-status/reference \
+            @agent-arc-status/emitter \
+            @agent-arc-status/cli \
+            @agent-arc-status/dashboard \
+            @agent-arc-status/adapter-otel \
+            @agent-arc-status/adapter-mcp \
+            @agent-arc-status/adapter-langchain; do
+            echo "publishing $pkg"
+            npm publish -w "$pkg" --provenance --access public
+          done
