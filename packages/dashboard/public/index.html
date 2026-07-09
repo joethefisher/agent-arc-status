@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Agent Arc Status</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Agent Arc Status</h1>
+      <span id="conn" class="conn">connecting…</span>
+    </header>
+    <main id="arcs" aria-live="polite"></main>
+    <p id="empty" class="empty">
+      No arcs yet. POST <code>arc.status</code> events to <code>/ingest</code> to watch them here.
+    </p>
+    <script src="/app.js"></script>
+  </body>
+</html>
