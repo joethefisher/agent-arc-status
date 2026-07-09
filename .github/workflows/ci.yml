@@ -25,17 +25,20 @@ jobs:
           cache: npm
           cache-dependency-path: package-lock.json
 
+      # --ignore-scripts: skip per-package prepare during install; dependents'
+      # prepare (tsc) would run before the reference is built. We build
+      # explicitly (reference first) below.
       - name: Install
-        run: npm ci
+        run: npm ci --ignore-scripts
+
+      - name: Build
+        run: npm run build
 
       - name: Typecheck
         run: npm run typecheck
 
       - name: Test
         run: npm test
-
-      - name: Build
-        run: npm run build
 
   spec-and-schema:
     name: spec + schema sanity
@@ -158,7 +161,7 @@ jobs:
 
       - name: Build workspaces
         run: |
-          npm ci
+          npm ci --ignore-scripts
           npm run build
 
       - name: Node conformance runner

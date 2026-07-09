@@ -13,6 +13,7 @@
   "homepage": "https://github.com/joethefisher/agent-arc-status#readme",
   "bugs": "https://github.com/joethefisher/agent-arc-status/issues",
   "workspaces": [
+    "packages/reference",
     "packages/*"
   ],
   "engines": {

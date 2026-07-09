@@ -28,9 +28,9 @@ jobs:
 
       - name: Install, build, verify
         run: |
-          npm ci
-          npm run typecheck
+          npm ci --ignore-scripts
           npm run build
+          npm run typecheck
           npm test
           node packages/conformance/dist/run.js
 
