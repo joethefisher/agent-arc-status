@@ -20,6 +20,7 @@ export {
   ARC_STATUS_PHASES,
   type ArcStatusEvent,
   type ArcStatusPhase,
+  type EmitFn,
 } from "./types.js";
 
 export {
