@@ -1,0 +1,52 @@
+[
+  {
+    "id": "single-event/divergences/step-greater-than-total",
+    "description": "step > total: JSON Schema 2020-12 cannot express this cross-field rule",
+    "event": {
+      "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+      "phase": "milestone",
+      "title": "build atlas index",
+      "sent_at": "2026-06-14T09:00:00Z",
+      "step": 5,
+      "total": 3
+    },
+    "schema_valid": true,
+    "validator_valid": false,
+    "tier": "machine-verifiable",
+    "category": "divergence",
+    "issue_path": "step",
+    "notes": "Documented divergence #1 (schema.json $comment)."
+  },
+  {
+    "id": "single-event/divergences/sent-at-feb-30",
+    "description": "2026-02-30 is calendar-impossible; the regex admits it, the validator rejects it",
+    "event": {
+      "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+      "phase": "started",
+      "title": "build atlas index",
+      "sent_at": "2026-02-30T09:00:00Z"
+    },
+    "schema_valid": true,
+    "validator_valid": false,
+    "tier": "machine-verifiable",
+    "category": "divergence",
+    "issue_path": "sent_at",
+    "notes": "Documented divergence #2 (schema.json $comment)."
+  },
+  {
+    "id": "single-event/divergences/sent-at-apr-31",
+    "description": "2026-04-31 is calendar-impossible; the regex admits it, the validator rejects it",
+    "event": {
+      "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+      "phase": "started",
+      "title": "build atlas index",
+      "sent_at": "2026-04-31T09:00:00Z"
+    },
+    "schema_valid": true,
+    "validator_valid": false,
+    "tier": "machine-verifiable",
+    "category": "divergence",
+    "issue_path": "sent_at",
+    "notes": "Documented divergence #2 (schema.json $comment)."
+  }
+]

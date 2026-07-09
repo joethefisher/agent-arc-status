@@ -1,0 +1,309 @@
+[
+  {
+    "id": "examples/01-short-arc",
+    "description": "canonical example stream 01-short-arc.jsonl",
+    "events": [],
+    "tier": "machine-verifiable",
+    "category": "phase-legality",
+    "sequence_valid": true
+  },
+  {
+    "id": "examples/02-feature-build",
+    "description": "canonical example stream 02-feature-build.jsonl",
+    "events": [
+      {
+        "arc_id": "f1b6e2a1-9c34-4a2b-b3a8-2f81c6e7d401",
+        "phase": "started",
+        "title": "build Pulsefeed v0.1: relay + worker + CLI",
+        "sent_at": "2026-06-13T20:00:00.000Z",
+        "protocol_version": "0.2",
+        "arc_kind": "build"
+      },
+      {
+        "arc_id": "f1b6e2a1-9c34-4a2b-b3a8-2f81c6e7d401",
+        "phase": "milestone",
+        "title": "scaffold + crypto + queue green",
+        "body": "25 tests passing across HMAC verify, replay protection, dedupe, queue helpers.",
+        "step": 3,
+        "total": 11,
+        "eta_minutes": 75,
+        "sent_at": "2026-06-13T20:18:00.000Z",
+        "protocol_version": "0.2"
+      },
+      {
+        "arc_id": "f1b6e2a1-9c34-4a2b-b3a8-2f81c6e7d401",
+        "phase": "milestone",
+        "title": "receiver boots, smoke test passes",
+        "body": "Valid POST -> 202 + row. Replay -> 200 deduped. Bad sig -> 401. All paths verified against a live server.",
+        "step": 5,
+        "total": 11,
+        "eta_minutes": 55,
+        "sent_at": "2026-06-13T20:36:00.000Z",
+        "protocol_version": "0.2"
+      },
+      {
+        "arc_id": "f1b6e2a1-9c34-4a2b-b3a8-2f81c6e7d401",
+        "phase": "milestone",
+        "title": "worker dispatching end-to-end",
+        "body": "Worker claims a pending row, calls relay.dispatch(), marks delivered. 43 tests total now.",
+        "step": 8,
+        "total": 11,
+        "eta_minutes": 25,
+        "sent_at": "2026-06-13T20:54:00.000Z",
+        "protocol_version": "0.2"
+      },
+      {
+        "arc_id": "f1b6e2a1-9c34-4a2b-b3a8-2f81c6e7d401",
+        "phase": "milestone",
+        "title": "systemd + internal VPN route live",
+        "body": "Receiver + worker supervised via systemd, /hooks/* routed over the internal VPN. Survived a reboot.",
+        "step": 10,
+        "total": 11,
+        "eta_minutes": 10,
+        "sent_at": "2026-06-13T21:12:00.000Z",
+        "protocol_version": "0.2"
+      },
+      {
+        "arc_id": "f1b6e2a1-9c34-4a2b-b3a8-2f81c6e7d401",
+        "phase": "done",
+        "title": "Pulsefeed v0.1 complete, 43 tests, deployed",
+        "body": "Main -> chat round-trip proven. Repo: meridian-loom/pulsefeed@a1b2c3d.",
+        "step": 11,
+        "total": 11,
+        "sent_at": "2026-06-13T21:28:00.000Z",
+        "protocol_version": "0.2"
+      }
+    ],
+    "tier": "machine-verifiable",
+    "category": "phase-legality",
+    "sequence_valid": true
+  },
+  {
+    "id": "examples/03-long-autonomous",
+    "description": "canonical example stream 03-long-autonomous.jsonl",
+    "events": [
+      {
+        "arc_id": "7e2c4d18-3a55-49f0-b6b1-1c2dfb842a90",
+        "phase": "started",
+        "title": "autonomous: retrain widget-demand forecast on synthetic catalog exports",
+        "sent_at": "2026-06-14T01:00:00.000Z",
+        "protocol_version": "0.2",
+        "arc_kind": "build",
+        "eta_minutes": 210
+      },
+      {
+        "arc_id": "7e2c4d18-3a55-49f0-b6b1-1c2dfb842a90",
+        "phase": "milestone",
+        "title": "raw data ingested: 1.2M rows, 8.4GB",
+        "body": "Source: synthetic catalog exports. Deduped to 980k unique. Schema validation passed.",
+        "sent_at": "2026-06-14T01:18:00.000Z",
+        "protocol_version": "0.2"
+      },
+      {
+        "arc_id": "7e2c4d18-3a55-49f0-b6b1-1c2dfb842a90",
+        "phase": "heartbeat",
+        "title": "still working: feature engineering",
+        "body": "Extracting catalog embeddings and seasonal demand indexes.",
+        "sent_at": "2026-06-14T01:36:00.000Z",
+        "protocol_version": "0.2"
+      },
+      {
+        "arc_id": "7e2c4d18-3a55-49f0-b6b1-1c2dfb842a90",
+        "phase": "milestone",
+        "title": "feature engineering complete",
+        "body": "42 features extracted, including catalog embeddings (FastText) and seasonal demand indexes.",
+        "sent_at": "2026-06-14T01:54:00.000Z",
+        "protocol_version": "0.2"
+      },
+      {
+        "arc_id": "7e2c4d18-3a55-49f0-b6b1-1c2dfb842a90",
+        "phase": "heartbeat",
+        "title": "still working: hyperparameter sweep (run 4/12)",
+        "body": "XGBoost grid over depth, learning_rate, subsample. ~18 min/run remaining.",
+        "sent_at": "2026-06-14T02:12:00.000Z",
+        "protocol_version": "0.2"
+      },
+      {
+        "arc_id": "7e2c4d18-3a55-49f0-b6b1-1c2dfb842a90",
+        "phase": "heartbeat",
+        "title": "still working: hyperparameter sweep (run 8/12)",
+        "body": "On track. Best so far: MAE 14.2 on validation.",
+        "sent_at": "2026-06-14T02:30:00.000Z",
+        "protocol_version": "0.2"
+      },
+      {
+        "arc_id": "7e2c4d18-3a55-49f0-b6b1-1c2dfb842a90",
+        "phase": "milestone",
+        "title": "sweep complete, best model selected",
+        "body": "Final: depth=8, lr=0.05, subsample=0.8. Val MAE 11.8 (-23% vs prior model).",
+        "sent_at": "2026-06-14T02:48:00.000Z",
+        "protocol_version": "0.2"
+      },
+      {
+        "arc_id": "7e2c4d18-3a55-49f0-b6b1-1c2dfb842a90",
+        "phase": "heartbeat",
+        "title": "still working: backtest on held-out data",
+        "body": "Replaying 6 months of held-out demand.",
+        "sent_at": "2026-06-14T03:06:00.000Z",
+        "protocol_version": "0.2"
+      },
+      {
+        "arc_id": "7e2c4d18-3a55-49f0-b6b1-1c2dfb842a90",
+        "phase": "milestone",
+        "title": "backtest on 6 months held-out data",
+        "body": "Calibration ECE 0.04, no drift detected vs training. Safe to ship.",
+        "sent_at": "2026-06-14T03:24:00.000Z",
+        "protocol_version": "0.2"
+      },
+      {
+        "arc_id": "7e2c4d18-3a55-49f0-b6b1-1c2dfb842a90",
+        "phase": "milestone",
+        "title": "model deployed to staging, smoke predictions look correct",
+        "body": "5 spot-check items, predictions within tolerance of recent comparable demand.",
+        "sent_at": "2026-06-14T03:42:00.000Z",
+        "protocol_version": "0.2"
+      },
+      {
+        "arc_id": "7e2c4d18-3a55-49f0-b6b1-1c2dfb842a90",
+        "phase": "heartbeat",
+        "title": "still working: production cutover",
+        "body": "Promoting the model and warming the rollback path.",
+        "sent_at": "2026-06-14T04:00:00.000Z",
+        "protocol_version": "0.2"
+      },
+      {
+        "arc_id": "7e2c4d18-3a55-49f0-b6b1-1c2dfb842a90",
+        "phase": "done",
+        "title": "widget-demand forecast v2 live, 23% MAE improvement",
+        "body": "Production cutover complete. Old model kept warm for rollback. Postmortem drafted.",
+        "sent_at": "2026-06-14T04:18:00.000Z",
+        "protocol_version": "0.2"
+      }
+    ],
+    "tier": "machine-verifiable",
+    "category": "phase-legality",
+    "sequence_valid": true
+  },
+  {
+    "id": "examples/04-blocked-and-resumed",
+    "description": "canonical example stream 04-blocked-and-resumed.jsonl",
+    "events": [
+      {
+        "arc_id": "3b9f8e22-c1a4-4d75-bc83-7e0fa9e21655",
+        "phase": "started",
+        "title": "ship plan-tier migration to prod",
+        "sent_at": "2026-06-14T14:00:00.000Z",
+        "protocol_version": "0.2",
+        "arc_kind": "migration"
+      },
+      {
+        "arc_id": "3b9f8e22-c1a4-4d75-bc83-7e0fa9e21655",
+        "phase": "milestone",
+        "title": "migration tested against staging snapshot",
+        "body": "22 tier rows updated, no orphaned FKs. Rollback script verified.",
+        "step": 2,
+        "total": 5,
+        "sent_at": "2026-06-14T14:12:00.000Z",
+        "protocol_version": "0.2"
+      },
+      {
+        "arc_id": "3b9f8e22-c1a4-4d75-bc83-7e0fa9e21655",
+        "phase": "blocked",
+        "title": "need finance sign-off on plan-B reclassification",
+        "body": "Migration reclassifies 12 synthetic accounts from plan A to plan B, which affects their next invoice. Need finance to confirm the reclassification is intended before applying.",
+        "sent_at": "2026-06-14T14:18:00.000Z",
+        "protocol_version": "0.2"
+      },
+      {
+        "arc_id": "3b9f8e22-c1a4-4d75-bc83-7e0fa9e21655",
+        "phase": "milestone",
+        "title": "finance signed off, resuming",
+        "body": "Confirmed with Robin Avery: plan B is correct; send the reclassification notice after the migration completes.",
+        "step": 3,
+        "total": 5,
+        "sent_at": "2026-06-14T15:04:00.000Z",
+        "protocol_version": "0.2"
+      },
+      {
+        "arc_id": "3b9f8e22-c1a4-4d75-bc83-7e0fa9e21655",
+        "phase": "milestone",
+        "title": "migration applied to prod, 22 rows updated",
+        "body": "Apply duration 4.2s. No errors. Health checks green.",
+        "step": 4,
+        "total": 5,
+        "sent_at": "2026-06-14T15:11:00.000Z",
+        "protocol_version": "0.2"
+      },
+      {
+        "arc_id": "3b9f8e22-c1a4-4d75-bc83-7e0fa9e21655",
+        "phase": "done",
+        "title": "migration complete + reclassification notices sent",
+        "body": "22 rows migrated, 12 plan-B accounts notified. Rollback script archived.",
+        "step": 5,
+        "total": 5,
+        "sent_at": "2026-06-14T15:24:00.000Z",
+        "protocol_version": "0.2"
+      }
+    ],
+    "tier": "machine-verifiable",
+    "category": "phase-legality",
+    "sequence_valid": true
+  },
+  {
+    "id": "examples/05-terminal-blocked",
+    "description": "canonical example stream 05-terminal-blocked.jsonl",
+    "events": [
+      {
+        "arc_id": "a4c01f7d-2bb6-4f88-93f4-6e51d4128920",
+        "phase": "started",
+        "title": "investigate: nightly ETL job failing intermittently",
+        "sent_at": "2026-06-15T09:00:00.000Z",
+        "protocol_version": "0.2",
+        "arc_kind": "triage"
+      },
+      {
+        "arc_id": "a4c01f7d-2bb6-4f88-93f4-6e51d4128920",
+        "phase": "heartbeat",
+        "title": "still working: bisecting the failure",
+        "body": "Reproducing locally with production-sized batches.",
+        "sent_at": "2026-06-15T09:18:00.000Z",
+        "protocol_version": "0.2"
+      },
+      {
+        "arc_id": "a4c01f7d-2bb6-4f88-93f4-6e51d4128920",
+        "phase": "milestone",
+        "title": "reproduced failure on staging",
+        "body": "Triggered on every run with batch size >2.4M. Connection reset from the upstream warehouse.",
+        "sent_at": "2026-06-15T09:32:00.000Z",
+        "protocol_version": "0.2"
+      },
+      {
+        "arc_id": "a4c01f7d-2bb6-4f88-93f4-6e51d4128920",
+        "phase": "heartbeat",
+        "title": "still working: tracing the reset",
+        "body": "Correlating the reset with warehouse query duration.",
+        "sent_at": "2026-06-15T09:50:00.000Z",
+        "protocol_version": "0.2"
+      },
+      {
+        "arc_id": "a4c01f7d-2bb6-4f88-93f4-6e51d4128920",
+        "phase": "milestone",
+        "title": "root cause identified: warehouse query timeout",
+        "body": "Query hits a 5-min server-side limit when the partition exceeds 2.4M rows. Needs a warehouse-side config change.",
+        "sent_at": "2026-06-15T10:07:00.000Z",
+        "protocol_version": "0.2"
+      },
+      {
+        "arc_id": "a4c01f7d-2bb6-4f88-93f4-6e51d4128920",
+        "phase": "blocked",
+        "title": "warehouse config change requires the data-platform team",
+        "body": "Need the data-platform team to raise statement_timeout for the analytics role. Filed MERI-2207; expected response 2-3 business days. Closing this arc as terminal-blocked; will open a new arc when MERI-2207 lands.",
+        "sent_at": "2026-06-15T10:14:00.000Z",
+        "protocol_version": "0.2"
+      }
+    ],
+    "tier": "machine-verifiable",
+    "category": "phase-legality",
+    "sequence_valid": true
+  }
+]

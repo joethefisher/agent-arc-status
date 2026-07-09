@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/joethefisher/agent-arc-status/main/conformance/schema/case.schema.json",
+  "title": "ArcStatusConformanceCaseFile",
+  "description": "A conformance corpus file is a JSON array of cases. Each case is either a single-event case (carrying `event` + schema_valid/validator_valid) or a sequence case (carrying `events` + sequence_valid). A runner asserts its implementation agrees with each declared verdict.",
+  "type": "array",
+  "items": {
+    "oneOf": [
+      { "$ref": "#/$defs/eventCase" },
+      { "$ref": "#/$defs/sequenceCase" }
+    ]
+  },
+  "$defs": {
+    "tier": {
+      "type": "string",
+      "enum": ["machine-verifiable", "operational"],
+      "description": "Which spec §6 conformance tier the case exercises."
+    },
+    "eventCase": {
+      "type": "object",
+      "required": ["id", "description"],
+      "properties": {
+        "id": { "type": "string" },
+        "description": { "type": "string" },
+        "event": {
+          "description": "The single candidate value (any JSON, including intentionally malformed)."
+        },
+        "schema_valid": {
+          "type": "boolean",
+          "description": "Expected verdict of a stateless JSON Schema validator against spec/schema.json."
+        },
+        "validator_valid": {
+          "type": "boolean",
+          "description": "Expected verdict of a full reference validator (validate())."
+        },
+        "tier": { "$ref": "#/$defs/tier" },
+        "category": { "type": "string" },
+        "issue": { "type": "string" },
+        "issue_path": { "type": "string" },
+        "notes": { "type": ["string", "null"] }
+      },
+      "required": ["event"]
+    },
+    "sequenceCase": {
+      "type": "object",
+      "required": ["id", "description", "events", "sequence_valid"],
+      "properties": {
+        "id": { "type": "string" },
+        "description": { "type": "string" },
+        "events": {
+          "type": "array",
+          "description": "The event stream for one arc.",
+          "items": { "type": "object" }
+        },
+        "options": {
+          "type": "object",
+          "description": "Options passed to validateSequence (partial, checkMonotonicSentAt).",
+          "properties": {
+            "partial": { "type": "boolean" },
+            "checkMonotonicSentAt": { "type": "boolean" }
+          },
+          "additionalProperties": false
+        },
+        "sequence_valid": {
+          "type": "boolean",
+          "description": "Expected verdict of the reference validateSequence()."
+        },
+        "tier": { "$ref": "#/$defs/tier" },
+        "category": { "type": "string" },
+        "issue": { "type": "string" },
+        "issue_index": {
+          "type": "integer",
+          "description": "Advisory: 0-indexed position where the first violation should be reported. A runner MAY assert this in strict mode."
+        },
+        "notes": { "type": ["string", "null"] }
+      }
+    }
+  }
+}

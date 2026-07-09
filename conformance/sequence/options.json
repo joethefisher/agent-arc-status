@@ -1,0 +1,64 @@
+[
+  {
+    "id": "sequence/options/partial-prefix-valid",
+    "description": "an in-flight prefix is valid with { partial: true }",
+    "events": [
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "started",
+        "title": "build atlas index",
+        "sent_at": "2026-06-14T09:00:00Z"
+      },
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "milestone",
+        "title": "progress",
+        "sent_at": "2026-06-14T09:05:00Z"
+      },
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "heartbeat",
+        "title": "still working",
+        "sent_at": "2026-06-14T09:10:00Z"
+      }
+    ],
+    "tier": "machine-verifiable",
+    "category": "phase-legality",
+    "sequence_valid": true,
+    "options": {
+      "partial": true
+    }
+  },
+  {
+    "id": "sequence/options/monotonic-violation",
+    "description": "with checkMonotonicSentAt, a decreasing sent_at is rejected",
+    "events": [
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "started",
+        "title": "build",
+        "sent_at": "2026-06-14T09:00:00Z"
+      },
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "milestone",
+        "title": "progress",
+        "sent_at": "2026-06-14T08:55:00Z"
+      },
+      {
+        "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+        "phase": "done",
+        "title": "complete",
+        "sent_at": "2026-06-14T09:10:00Z"
+      }
+    ],
+    "tier": "machine-verifiable",
+    "category": "phase-legality",
+    "options": {
+      "checkMonotonicSentAt": true
+    },
+    "sequence_valid": false,
+    "issue": "sent-at-decreased",
+    "issue_index": 1
+  }
+]

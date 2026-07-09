@@ -1,0 +1,194 @@
+[
+  {
+    "id": "single-event/valid/minimal-required-only",
+    "description": "only the four required fields",
+    "event": {
+      "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+      "phase": "started",
+      "title": "build atlas index",
+      "sent_at": "2026-06-14T09:00:00Z"
+    },
+    "schema_valid": true,
+    "validator_valid": true,
+    "tier": "machine-verifiable",
+    "category": "schema-validity"
+  },
+  {
+    "id": "single-event/valid/milestone-step-total",
+    "description": "milestone carrying step/total",
+    "event": {
+      "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+      "phase": "milestone",
+      "title": "routing table shipped",
+      "sent_at": "2026-06-14T09:00:00Z",
+      "step": 3,
+      "total": 8
+    },
+    "schema_valid": true,
+    "validator_valid": true,
+    "tier": "machine-verifiable",
+    "category": "schema-validity"
+  },
+  {
+    "id": "single-event/valid/heartbeat",
+    "description": "heartbeat with a current-activity title",
+    "event": {
+      "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+      "phase": "heartbeat",
+      "title": "still working: parameter sweep",
+      "sent_at": "2026-06-14T09:00:00Z"
+    },
+    "schema_valid": true,
+    "validator_valid": true,
+    "tier": "machine-verifiable",
+    "category": "schema-validity"
+  },
+  {
+    "id": "single-event/valid/done",
+    "description": "terminal done",
+    "event": {
+      "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+      "phase": "done",
+      "title": "complete, 43 tests, deployed",
+      "sent_at": "2026-06-14T09:00:00Z"
+    },
+    "schema_valid": true,
+    "validator_valid": true,
+    "tier": "machine-verifiable",
+    "category": "schema-validity"
+  },
+  {
+    "id": "single-event/valid/blocked-with-body",
+    "description": "blocked carrying an explanatory body",
+    "event": {
+      "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+      "phase": "blocked",
+      "title": "need infra sign-off",
+      "sent_at": "2026-06-14T09:00:00Z",
+      "body": "waiting on the platform team to approve the new route"
+    },
+    "schema_valid": true,
+    "validator_valid": true,
+    "tier": "machine-verifiable",
+    "category": "schema-validity"
+  },
+  {
+    "id": "single-event/valid/eta-zero",
+    "description": "eta_minutes may be zero",
+    "event": {
+      "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+      "phase": "milestone",
+      "title": "final checks",
+      "sent_at": "2026-06-14T09:00:00Z",
+      "eta_minutes": 0
+    },
+    "schema_valid": true,
+    "validator_valid": true,
+    "tier": "machine-verifiable",
+    "category": "schema-validity"
+  },
+  {
+    "id": "single-event/valid/eta-fractional",
+    "description": "eta_minutes may be fractional",
+    "event": {
+      "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+      "phase": "milestone",
+      "title": "compiling",
+      "sent_at": "2026-06-14T09:00:00Z",
+      "eta_minutes": 12.5
+    },
+    "schema_valid": true,
+    "validator_valid": true,
+    "tier": "machine-verifiable",
+    "category": "schema-validity"
+  },
+  {
+    "id": "single-event/valid/arc-kind",
+    "description": "optional arc_kind label",
+    "event": {
+      "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+      "phase": "started",
+      "title": "build atlas index",
+      "sent_at": "2026-06-14T09:00:00Z",
+      "arc_kind": "build"
+    },
+    "schema_valid": true,
+    "validator_valid": true,
+    "tier": "machine-verifiable",
+    "category": "schema-validity"
+  },
+  {
+    "id": "single-event/valid/protocol-version-major-minor",
+    "description": "protocol_version as major.minor",
+    "event": {
+      "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+      "phase": "started",
+      "title": "build atlas index",
+      "sent_at": "2026-06-14T09:00:00Z",
+      "protocol_version": "0.2"
+    },
+    "schema_valid": true,
+    "validator_valid": true,
+    "tier": "machine-verifiable",
+    "category": "schema-validity"
+  },
+  {
+    "id": "single-event/valid/protocol-version-with-patch",
+    "description": "protocol_version as major.minor.patch",
+    "event": {
+      "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+      "phase": "started",
+      "title": "build atlas index",
+      "sent_at": "2026-06-14T09:00:00Z",
+      "protocol_version": "0.2.0"
+    },
+    "schema_valid": true,
+    "validator_valid": true,
+    "tier": "machine-verifiable",
+    "category": "schema-validity"
+  },
+  {
+    "id": "single-event/valid/x-extensions",
+    "description": "x_-prefixed extensions are permitted",
+    "event": {
+      "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+      "phase": "started",
+      "title": "build atlas index",
+      "sent_at": "2026-06-14T09:00:00Z",
+      "x_trace_id": "abc123",
+      "x_parent_arc_id": "018f9c31-7e40-7a2b-9c00-0000000000b2"
+    },
+    "schema_valid": true,
+    "validator_valid": true,
+    "tier": "machine-verifiable",
+    "category": "schema-validity"
+  },
+  {
+    "id": "single-event/valid/sent-at-fractional-seconds",
+    "description": "sent_at with fractional seconds",
+    "event": {
+      "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+      "phase": "started",
+      "title": "build atlas index",
+      "sent_at": "2026-06-14T09:00:00.250Z"
+    },
+    "schema_valid": true,
+    "validator_valid": true,
+    "tier": "machine-verifiable",
+    "category": "schema-validity"
+  },
+  {
+    "id": "single-event/valid/sent-at-numeric-offset",
+    "description": "sent_at with a numeric UTC offset",
+    "event": {
+      "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+      "phase": "started",
+      "title": "build atlas index",
+      "sent_at": "2026-06-14T02:00:00-07:00"
+    },
+    "schema_valid": true,
+    "validator_valid": true,
+    "tier": "machine-verifiable",
+    "category": "schema-validity"
+  }
+]

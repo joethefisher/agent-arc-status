@@ -1,0 +1,66 @@
+[
+  {
+    "id": "single-event/extensions/single-x-field",
+    "description": "one x_-prefixed extension is accepted",
+    "event": {
+      "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+      "phase": "started",
+      "title": "build atlas index",
+      "sent_at": "2026-06-14T09:00:00Z",
+      "x_trace": "t"
+    },
+    "schema_valid": true,
+    "validator_valid": true,
+    "tier": "machine-verifiable",
+    "category": "extensions"
+  },
+  {
+    "id": "single-event/extensions/multiple-x-fields",
+    "description": "several x_-prefixed extensions are accepted",
+    "event": {
+      "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+      "phase": "started",
+      "title": "build atlas index",
+      "sent_at": "2026-06-14T09:00:00Z",
+      "x_a": "1",
+      "x_b": 2,
+      "x_parent_arc_id": "018f9c31-7e40-7a2b-9c00-0000000000b2"
+    },
+    "schema_valid": true,
+    "validator_valid": true,
+    "tier": "machine-verifiable",
+    "category": "extensions"
+  },
+  {
+    "id": "single-event/extensions/unknown-non-x-field",
+    "description": "an unknown field without the x_ prefix is rejected",
+    "event": {
+      "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+      "phase": "started",
+      "title": "build atlas index",
+      "sent_at": "2026-06-14T09:00:00Z",
+      "foo": "bar"
+    },
+    "schema_valid": false,
+    "validator_valid": false,
+    "tier": "machine-verifiable",
+    "category": "extensions",
+    "issue_path": "foo"
+  },
+  {
+    "id": "single-event/extensions/wrong-case-prefix",
+    "description": "the extension prefix is case-sensitive (X_ is not x_)",
+    "event": {
+      "arc_id": "018f9c31-7e40-7a2b-9c00-0000000000a1",
+      "phase": "started",
+      "title": "build atlas index",
+      "sent_at": "2026-06-14T09:00:00Z",
+      "X_trace": "t"
+    },
+    "schema_valid": false,
+    "validator_valid": false,
+    "tier": "machine-verifiable",
+    "category": "extensions",
+    "issue_path": "X_trace"
+  }
+]

@@ -1,0 +1,59 @@
+{
+  "conformance_version": "1.0.0",
+  "protocol_version": "0.2",
+  "schema_id": "https://raw.githubusercontent.com/joethefisher/agent-arc-status/v0.2.0/spec/schema.json",
+  "description": "Language-agnostic conformance corpus for the Agent Arc Status Protocol. Each case declares expected verdicts (schema_valid / validator_valid / sequence_valid) that any implementation's runner checks against its own validator. See README.md for the §6 tier coverage.",
+  "total_cases": 74,
+  "files": [
+    {
+      "file": "single-event/valid.json",
+      "cases": 13,
+      "sha256": "ecc0121695be7635adddae5634dae24f8426fdf37d1af87a5d9de714378b1a71"
+    },
+    {
+      "file": "single-event/schema-invalid.json",
+      "cases": 13,
+      "sha256": "61e0a566f09f2e502103b3e2c308eae072709a415d77cb4755ca3af30bddcc96"
+    },
+    {
+      "file": "single-event/field-constraints.json",
+      "cases": 15,
+      "sha256": "69f167e676fab0f5e0be6359a7bb5cd99dc9866b769787e0d859b0ab81bd8c09"
+    },
+    {
+      "file": "single-event/extensions.json",
+      "cases": 4,
+      "sha256": "3191e5f805dab36a2797928603c42946a4a66cc3c37c40814ad137b4faaaebf8"
+    },
+    {
+      "file": "single-event/divergences.json",
+      "cases": 3,
+      "sha256": "38549fd7c9a01c0d6c860868b0518e8a1b10a0eff1377f16432739f746699ac8"
+    },
+    {
+      "file": "sequence/valid.json",
+      "cases": 9,
+      "sha256": "aecc064c1603657da2b53a44048382221b9ff88b5fa2a3d8ebc19f7fd035c6e7"
+    },
+    {
+      "file": "sequence/phase-ordering.json",
+      "cases": 7,
+      "sha256": "e424e77bfbb016b34eaa41abcf51e5deebb5d468639d2da18693d67556c6aa11"
+    },
+    {
+      "file": "sequence/blocked-rules.json",
+      "cases": 3,
+      "sha256": "1d0e2caa1473883c3d537cd8e96335193573b11f026e42a55d09517b3e9f02db"
+    },
+    {
+      "file": "sequence/options.json",
+      "cases": 2,
+      "sha256": "027372782184b0141cff1421bfebe5253817a57c13ea0d1a91b7fb6034026d6b"
+    },
+    {
+      "file": "examples/streams.json",
+      "cases": 5,
+      "sha256": "fea09911ca634028b5293a4c3c4706dbe243547b01230c4c3ef5c3f74d03d7fa"
+    }
+  ]
+}
