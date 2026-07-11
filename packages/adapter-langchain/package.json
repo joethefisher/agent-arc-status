@@ -1,6 +1,6 @@
 {
   "name": "@agent-arc-status/adapter-langchain",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "A LangChain callback handler that emits Agent Arc Status Protocol events at chain/agent boundaries.",
   "license": "MIT",
   "author": "Joe Fisher",

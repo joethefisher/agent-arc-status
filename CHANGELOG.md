@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 The spec and the reference implementations version independently once they diverge. As of `0.3.0` the **protocol/spec remains `0.2`** (no wire change) while the **implementations and tooling are `0.3.0`** — the first such split, which this changelog anticipated.
 
+## [0.3.1] - 2026-07-11
+
+No functional changes. A release-pipeline verification cut that exercises npm **OIDC trusted
+publishing** (token-free) end to end; package contents are identical to `0.3.0`.
+
 ## [0.3.0] - 2026-06-17
 
 Implementations and tooling only — **the protocol wire format is unchanged (still v0.2)**; `spec/schema.json` and its `$id` are untouched. This release turns the reference into an ecosystem.

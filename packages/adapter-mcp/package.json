@@ -1,6 +1,6 @@
 {
   "name": "@agent-arc-status/adapter-mcp",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Bridge Model Context Protocol progress notifications and Agent Arc Status Protocol events, in both directions.",
   "license": "MIT",
   "author": "Joe Fisher",

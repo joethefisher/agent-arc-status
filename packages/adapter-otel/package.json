@@ -1,6 +1,6 @@
 {
   "name": "@agent-arc-status/adapter-otel",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Record Agent Arc Status Protocol events as OpenTelemetry span events, correlating arcs to traces.",
   "license": "MIT",
   "author": "Joe Fisher",
