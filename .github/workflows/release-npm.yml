@@ -1,8 +1,12 @@
 name: Release npm
 
 # Publishes the public @agent-arc-status/* packages when a v* tag is pushed.
-# Requires the repo secret NPM_TOKEN (an npm automation token with publish rights
-# to the @agent-arc-status scope). Uses npm provenance (OIDC).
+#
+# Auth is transitioning to OIDC trusted publishing (see docs/releasing.md). With
+# a trusted publisher configured per package on npmjs.com and npm >= 11.5.1, the
+# CLI authenticates via the workflow's OIDC token and falls back to NPM_TOKEN
+# only if OIDC is unavailable. Once a release is confirmed to publish via OIDC,
+# the NODE_AUTH_TOKEN step and the NPM_TOKEN secret can be removed.
 
 on:
   push:
@@ -25,6 +29,10 @@ jobs:
           registry-url: "https://registry.npmjs.org"
           cache: npm
           cache-dependency-path: package-lock.json
+
+      # OIDC trusted publishing requires npm >= 11.5.1; Node 22 ships npm 10.9.
+      - name: Use npm that supports trusted publishing
+        run: npm install -g npm@latest
 
       - name: Install, build, verify
         run: |
