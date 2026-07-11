@@ -144,7 +144,9 @@ Longer-form rationale: [docs/motivation.md](docs/motivation.md).
 
 ## Status
 
-**v0.2 draft.** The protocol has been dogfooded in one system (the authoring system, n=1) and is being published for community review before v1.0. We expect to evolve it based on what real users report. Breaking changes between draft versions are possible; once we cut v1.0, we follow the [versioning policy](spec/v0.2.md#10-versioning) in the spec.
+This is a pre-1.0 draft, currently at v0.2. It ships with reference implementations in TypeScript and Python, both published (npm and PyPI) and checked against a shared conformance suite, so two independent implementations already agree on exactly what a valid stream looks like. You can adopt it today.
+
+It is still a draft because the design is open to feedback before v1.0, and we would rather settle the shape with input from real adopters than freeze it too early. Breaking changes between draft versions are possible; once we cut v1.0 we follow the [versioning policy](spec/v0.2.md#10-versioning) in the spec.
 
 ## How to engage
 
