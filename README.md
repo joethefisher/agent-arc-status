@@ -7,8 +7,6 @@
 [![Spec: v0.2](https://img.shields.io/badge/Spec-v0.2-green.svg)](spec/v0.2.md)
 [![Status: Draft](https://img.shields.io/badge/Status-Draft-orange.svg)](#status)
 
----
-
 ## The problem
 
 You give an autonomous agent a real task. It accepts. Then... silence.
@@ -97,33 +95,37 @@ See [`examples/`](examples/) for realistic full sequences (short arc, multi-mile
 
 Full semantics, MUST/SHOULD/MAY rules, and validation logic live in [spec/v0.2.md](spec/v0.2.md).
 
-## Implementations & tooling
+## Install and use
 
-This repository is an npm-workspaces monorepo. The zero-dependency TypeScript reference is the
-conformance reference — not the only allowed implementation. A [Python reference](reference/python/)
-mirrors it 1:1, and a [language-agnostic conformance suite](conformance/) lets any implementation
-prove interoperability (both references pass the same corpus).
-
-| Package | What it is |
-|---|---|
-| [`@agent-arc-status/reference`](packages/reference/) | Types, validator, renderer, cadence, state, delegation-tree tooling (zero deps, npm) |
-| [`agent-arc-status`](reference/python/) | Python reference implementation (zero deps, PyPI) |
-| [`@agent-arc-status/emitter`](packages/emitter/) | Batteries-included producer: started-first, done-on-exit, auto-heartbeat |
-| [`@agent-arc-status/cli`](packages/cli/) | `arc-status` — render / validate / tree / tail / serve a stream |
-| [`@agent-arc-status/dashboard`](packages/dashboard/) | `arc-dashboard` — a live web view of in-flight arcs |
-| [`@agent-arc-status/adapter-otel`](packages/adapter-otel/) · [`-mcp`](packages/adapter-mcp/) · [`-langchain`](packages/adapter-langchain/) | Framework/transport bridges |
-| [`conformance/`](conformance/) | The shared corpus + runners (the v1.0 interop gate) |
+The reference implementations and tooling are published on npm and PyPI, so you can pull them straight into your project. Everything here has zero runtime dependencies.
 
 ```bash
-# Try the CLI in 30 seconds:
+# Try the CLI without installing anything:
 npx @agent-arc-status/cli render examples/03-long-autonomous.jsonl
 
-# Use the library:
-npm install @agent-arc-status/reference     # or: pip install agent-arc-status
+# TypeScript or JavaScript:
+npm install @agent-arc-status/reference
 
-# Work from a clone (npm workspaces):
-npm install && npm test
+# Python:
+pip install agent-arc-status
 ```
+
+Here is the full set. Each npm package installs with `npm install <name>`; the Python one is on PyPI.
+
+| Package | What it does |
+|---|---|
+| [`@agent-arc-status/reference`](packages/reference/) | The TypeScript reference: types, validator, renderer, cadence, state, and delegation-tree tooling |
+| [`agent-arc-status`](reference/python/) (PyPI) | The Python reference, a faithful port of the TypeScript one |
+| [`@agent-arc-status/emitter`](packages/emitter/) | A producer that handles the fiddly parts for you: a started event first, a done or blocked event on exit, and automatic heartbeats |
+| [`@agent-arc-status/cli`](packages/cli/) | The `arc-status` command, to render, validate, tree, tail, or serve a stream |
+| [`@agent-arc-status/dashboard`](packages/dashboard/) | The `arc-dashboard` command, a live web view of in-flight arcs |
+| [`@agent-arc-status/adapter-otel`](packages/adapter-otel/) | Records arc events as OpenTelemetry span events |
+| [`@agent-arc-status/adapter-mcp`](packages/adapter-mcp/) | Bridges MCP progress notifications and arc events, in both directions |
+| [`@agent-arc-status/adapter-langchain`](packages/adapter-langchain/) | A LangChain callback handler that emits arc events at chain and agent boundaries |
+
+The TypeScript reference is the one to check your work against, but it is not the only implementation you are allowed to use. The Python port passes the same [language-agnostic conformance suite](conformance/), so the two agree on exactly what a valid stream looks like. If you write your own implementation in another language, that suite is how you show it interoperates.
+
+Working from a clone? It is an npm workspaces monorepo, so `npm install` at the root sets up every package and `npm test` runs the whole thing.
 
 ## Why we built this
 
