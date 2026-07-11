@@ -1,6 +1,6 @@
 {
   "name": "@agent-arc-status/dashboard",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "arc-dashboard: a zero-dependency live web view of in-flight Agent Arc Status Protocol arcs.",
   "license": "MIT",
   "author": "Joe Fisher",

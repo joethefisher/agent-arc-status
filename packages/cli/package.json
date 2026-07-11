@@ -1,6 +1,6 @@
 {
   "name": "@agent-arc-status/cli",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "arc-status: a zero-dependency CLI to render, tail, serve, validate, and tree Agent Arc Status Protocol event streams.",
   "license": "MIT",
   "author": "Joe Fisher",

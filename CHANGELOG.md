@@ -6,10 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 The spec and the reference implementations version independently once they diverge. As of `0.3.0` the **protocol/spec remains `0.2`** (no wire change) while the **implementations and tooling are `0.3.0`** — the first such split, which this changelog anticipated.
 
+## [0.3.2] - 2026-07-11
+
+No functional changes. Completes the npm auth migration: this release publishes with **no
+`NPM_TOKEN`** — token-free **OIDC trusted publishing** for every package, matching PyPI. Package
+contents are identical to `0.3.0`.
+
 ## [0.3.1] - 2026-07-11
 
-No functional changes. A release-pipeline verification cut that exercises npm **OIDC trusted
-publishing** (token-free) end to end; package contents are identical to `0.3.0`.
+No functional changes. A release-pipeline verification cut for npm OIDC trusted publishing (with the
+token still present as a fallback); package contents are identical to `0.3.0`.
 
 ## [0.3.0] - 2026-06-17
 

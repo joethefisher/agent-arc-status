@@ -39,10 +39,10 @@ pip index versions agent-arc-status               # or check pypi.org
 
 - **PyPI** uses **Trusted Publishing (OIDC)** — no token. A trusted publisher is configured on PyPI
   for this repo + `release-pypi.yml`.
-- **npm** currently uses the repo secret **`NPM_TOKEN`** (a *granular* access token with **bypass
-  2FA** enabled — classic/automation tokens were removed from npm in Nov 2025) and is **migrating to
-  OIDC trusted publishing** (below). npm's OIDC cannot perform a package's *first* publish, which is
-  why the initial `0.3.0` release used a token.
+- **npm** also uses **Trusted Publishing (OIDC)** — no token. Each of the seven packages has a
+  trusted publisher configured for this repo + `release-npm.yml`, and `id-token: write` is the only
+  credential. (The very first release, `0.3.0`, used an `NPM_TOKEN` because npm OIDC cannot perform a
+  package's *first* publish; the migration below removed it.)
 
 ## Migrating npm to token-free OIDC trusted publishing
 

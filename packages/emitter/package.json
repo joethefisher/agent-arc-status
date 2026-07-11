@@ -1,6 +1,6 @@
 {
   "name": "@agent-arc-status/emitter",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Batteries-included producer for the Agent Arc Status Protocol: guarantees started-first, done/blocked-on-exit, and an automatic silence backstop. Zero runtime dependencies.",
   "license": "MIT",
   "author": "Joe Fisher",

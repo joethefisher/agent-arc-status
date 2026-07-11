@@ -2,11 +2,10 @@ name: Release npm
 
 # Publishes the public @agent-arc-status/* packages when a v* tag is pushed.
 #
-# Auth is transitioning to OIDC trusted publishing (see docs/releasing.md). With
-# a trusted publisher configured per package on npmjs.com and npm >= 11.5.1, the
-# CLI authenticates via the workflow's OIDC token and falls back to NPM_TOKEN
-# only if OIDC is unavailable. Once a release is confirmed to publish via OIDC,
-# the NODE_AUTH_TOKEN step and the NPM_TOKEN secret can be removed.
+# Token-free via OIDC trusted publishing (see docs/releasing.md): each package
+# has a trusted publisher configured on npmjs.com for this repo + this workflow,
+# and npm >= 11.5.1 authenticates using the workflow's OIDC identity. No
+# NPM_TOKEN — id-token: write is the only credential.
 
 on:
   push:
@@ -43,8 +42,6 @@ jobs:
           node packages/conformance/dist/run.js
 
       - name: Publish (reference first, then dependents)
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           set -euo pipefail
           for pkg in \

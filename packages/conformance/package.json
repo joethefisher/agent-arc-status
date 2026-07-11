@@ -1,6 +1,6 @@
 {
   "name": "@agent-arc-status/conformance",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "private": true,
   "description": "Runner that checks an implementation against the Agent Arc Status Protocol conformance corpus.",
   "license": "MIT",
