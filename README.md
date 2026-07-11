@@ -3,9 +3,10 @@
 > **A standard event vocabulary for autonomous agent work-in-progress.**
 > So humans, agents, and dashboards can tell whether a long-running arc is making progress, idling, or stuck, without polling the agent or peeking into its session.
 
+[![npm](https://img.shields.io/npm/v/@agent-arc-status/reference?label=npm)](https://www.npmjs.com/package/@agent-arc-status/reference)
+[![PyPI](https://img.shields.io/pypi/v/agent-arc-status?label=PyPI)](https://pypi.org/project/agent-arc-status/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Spec: v0.2](https://img.shields.io/badge/Spec-v0.2-green.svg)](spec/v0.2.md)
-[![Status: Draft](https://img.shields.io/badge/Status-Draft-orange.svg)](#status)
 
 ## The problem
 
@@ -141,12 +142,6 @@ We wrote down the smallest protocol that would have solved it on day one (a phas
 That breadth, combined with the fact that nothing in the ecosystem standardizes it today, is why we think it's worth publishing as a community spec rather than keeping it in-house.
 
 Longer-form rationale: [docs/motivation.md](docs/motivation.md).
-
-## Status
-
-This is a pre-1.0 draft, currently at v0.2. It ships with reference implementations in TypeScript and Python, both published (npm and PyPI) and checked against a shared conformance suite, so two independent implementations already agree on exactly what a valid stream looks like. You can adopt it today.
-
-It is still a draft because the design is open to feedback before v1.0, and we would rather settle the shape with input from real adopters than freeze it too early. Breaking changes between draft versions are possible; once we cut v1.0 we follow the [versioning policy](spec/v0.2.md#10-versioning) in the spec.
 
 ## How to engage
 
